@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Account Setup";
+    const string inputSize = "input-xlarge";
+}
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            var $element = $('#accountSetup'),
+                viewModel = new fmm.viewmodel.security.AccountSetupViewModel();
+            
+            ko.applyBindings(viewModel, $element.get(0));
+        });
+    </script>
+}
+<div class="page-header">
+    <h1>Let's Setup Your site!</h1>
+</div>
+<p class="lead">
+    Please provide us with your account information. Your email address and any other personal information will never be shared with anyone and is used solely for account management.
+</p>
+<form id="accountSetup" class="form-horizontal">
+    <fieldset>
+        <legend>Account Setup</legend>
+        <div data-bind="template: { name: 'MessageLog', data: log }"></div>
+        <div class="control-group">
+            <label class="control-label" for="email">Email Address</label>
+            <div class="controls required">
+                <div class="input-prepend input-icon">
+                    <span class="add-on"><i class="icon-envelope"></i></span>
+                    <input type="email" id="email" placeholder="Email Address" class="@inputSize" data-bind="value: emailAddress" />
+                </div>
+                <p class="help-block">Your email will be your username to log in</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="password">Password</label>
+            <div class="controls required">
+                <div class="input-prepend input-icon">
+                    <span class="add-on"><i class="icon-lock"></i></span>
+                    <input type="password" id="password" placeholder="Password" class="@inputSize" data-bind="value: password" />
+                </div>
+                <p class="help-block">Please use at least 8 characters with at least 1 upper-case character to make your password more secure</p>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="confirmPassword">Confirm password</label>
+            <div class="controls required">
+                <div class="input-prepend input-icon">
+                    <span class="add-on"><i class="icon-lock"></i></span>
+                    <input type="password" id="confirmPassword" placeholder="Confirm password" class="@inputSize" data-bind="value: confirmPassword" />
+                </div>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="firstName">First name</label>
+            <div class="controls required">
+                <input type="text" id="firstName" placeholder="First name" class="@inputSize" data-bind="value: firstName" />
+                <p class="help-block"></p>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="lastName">Last name</label>
+            <div class="controls required">
+                <input type="text" id="lastName" placeholder="Last name" class="@inputSize" data-bind="value: lastName" />
+                <p class="help-block"></p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="businessName">Business Name</label>
+            <div class="controls required">
+                <input type="text" id="businessName" placeholder="ex: Betty's Bagels" class="@inputSize" data-bind="value: businessName" />
+                <p class="help-block"></p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="businessType">Business Type</label>
+            <div class="controls required">
+                <select id="businessType" class="@inputSize" data-bind="combo: { options: fmm.viewmodel.security.IndustryOptions, value: industry, optionsValue: 'code', optionsText: 'desc', optionsCaption: 'Select an industry...' }">
+                </select>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit" data-bind="enable: isViewModelValid, click: createAccount">Create Account</button>
+        </div>
+    </fieldset>
+</form>

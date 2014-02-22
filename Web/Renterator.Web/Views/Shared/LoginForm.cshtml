@@ -1,0 +1,48 @@
+﻿@using Renterator.Web
+@{
+    bool initiallyShowDialog = Request.QueryString["login"] == "1";
+    string initiallyShowDialogJs = initiallyShowDialog.ToString().ToLower();
+}
+
+<div id="login-form" class="navbar-form pull-right">
+    <button class="btn" data-bind="modal: { id: 'login-prompt', show: @initiallyShowDialogJs }"><i class="icon-lock"></i> Sign in</button>
+    <button class="btn" type="submit" data-bind="click: newAccount">Create an Account</button>
+    <form novalidate>
+    @UiHelpers.Modal("login-prompt",
+        @<div class="form-horizontal">
+            <div data-bind="template: { name: 'MessageLog', data: log }"></div>
+            <div class="control-group">
+                <label for="username" class="control-label">Email</label>
+                <div class="controls required">
+                    <input id="username" class="input-large" type="text" data-bind="value: userName" placeholder="Username" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="password" class="control-label">Password</label>
+                <div class="controls required">
+                    <input id="password" class="input-large" type="password" data-bind="value: password, valueUpdate: 'keyup'" placeholder="Password" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <a href="@Url.Action(MVC.PasswordRecovery.Index())">Forgot your password?</a>
+                </div>
+            </div>
+        </div>,
+        @<div class="pull-right">
+            <button class="btn btn-link" type="button" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="ladda-button" data-color="blue" data-size="s" data-style="expand-left" data-bind="enable: isViewModelValid, asyncBtn: login">
+                <span class="ladda-label">Login</span>
+            </button>
+        </div>,
+        initiallyHidden: ViewData.ModelState.IsValid,
+        title: "Login")
+    </form>
+    <script type="text/javascript">
+        $(function () {
+            var $prompt = $('#login-form'),
+                viewModel = new fmm.viewmodel.security.LoginViewModel();
+            ko.applyBindings(viewModel, $prompt.get(0));
+        });
+    </script>
+</div>

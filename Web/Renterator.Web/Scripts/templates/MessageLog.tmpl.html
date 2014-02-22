@@ -1,0 +1,28 @@
+﻿<!-- ko if: errors().length -->
+<div class="alert alert-block alert-error">
+    <ul data-bind="foreach: errors">
+        <li data-bind="text: message"></li>
+    </ul>
+</div>
+<!-- /ko -->
+<!-- ko if: warnings().length -->
+<div class="alert alert-block">
+    <ul data-bind="foreach: warnings">
+        <li data-bind="text: message"></li>
+    </ul>
+</div>
+<!-- /ko -->
+<!-- ko if: infos().length -->
+<div class="alert alert-block alert-error">
+    <ul data-bind="foreach: infos">
+        <li data-bind="text: message"></li>
+    </ul>
+</div>
+<!-- /ko -->
+<!-- ko if: successes().length -->
+<div class="alert alert-block alert-success">
+    <ul data-bind="foreach: successes">
+        <li data-bind="text: message"></li>
+    </ul>
+</div>
+<!-- /ko -->

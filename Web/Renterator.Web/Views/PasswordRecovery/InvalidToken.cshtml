@@ -1,0 +1,9 @@
+﻿@model Renterator.Services.Infrastructure.LogMessage
+@{
+    ViewBag.SubTitle = string.Empty;
+    Layout = "~/Views/PasswordRecovery/Layout.cshtml";
+}
+
+<div class="alert alert-block alert-error">
+    @Model.Message
+</div>

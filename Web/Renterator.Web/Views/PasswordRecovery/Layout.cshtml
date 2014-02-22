@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Password Assistance";
+    Layout = "~/Views/Shared/MarketingSiteLayout.cshtml";
+}
+@section scripts {
+    @RenderSection("scripts", required: false)
+}
+<fieldset class="form-horizontal">
+    <legend>
+        Password Assistance
+        <small>@ViewBag.SubTitle</small>
+    </legend>
+    @RenderBody()
+</fieldset>

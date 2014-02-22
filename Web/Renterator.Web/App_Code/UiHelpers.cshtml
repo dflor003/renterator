@@ -1,0 +1,19 @@
+﻿@helper Modal(string id, Func<object, HelperResult> bodyTemplate, Func<object, HelperResult> footerTemplate = null, string title = null, bool initiallyHidden = true) 
+{
+    object obj = new object();
+    <div id="@id" class="modal fade" data-show="@((!initiallyHidden).ToString().ToLower())">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>@title</h3>
+        </div>
+        <div class="modal-body">
+            @bodyTemplate(obj)
+        </div>
+        @if (footerTemplate != null)
+        {
+            <div class="modal-footer">
+                @footerTemplate(obj)
+            </div>   
+        }
+    </div>
+}

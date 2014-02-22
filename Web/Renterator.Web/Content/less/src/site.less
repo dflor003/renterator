@@ -1,0 +1,249 @@
+﻿/**
+ * Main styles
+ */
+
+/*#region Constants*/
+
+/*#endregion*/
+
+/*#region Mixins/Helper functions*/
+.rounded-corners (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+/*#endregion*/
+
+/*#region Header/Footer support */
+@footer-size: 26px;
+
+@media (min-width: 980px) {
+    body.with-footer {
+        padding-bottom: @footer-size;
+    }
+}
+
+body {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+footer.footer {
+    position: fixed;
+    height: @footer-size - 1;
+    left: auto;
+    background-color: #ddd;
+    border-top: 1px solid #ccc;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*#endregion*/
+
+/*#region Bootstrap Overrides*/
+ul {
+    list-style-image: url('../../Images/bullet.png');
+}
+
+.alert li {
+    list-style: none;
+}
+
+.control-label {
+    font-weight: bold;
+}
+
+@media (max-width: 979px) {
+    .navbar-fixed-top {
+        margin-bottom: 0;
+    }
+}
+
+@carousel-height: 500px;
+
+.carousel {
+    margin-bottom: 10px;
+
+    .container {
+        position: relative;
+        z-index: 9;
+    }
+
+    .carousel-control {
+        height: 80px;
+        margin-top: 0;
+        font-size: 120px;
+        -webkit-text-shadow: 0 1px 1px #000000;
+        -webkit-text-shadow: 0 1px 1px rgba(0,0,0,.4);
+        text-shadow: 0 1px 1px #000000;
+        text-shadow: 0 1px 1px rgba(0,0,0,.4);
+        background-color: transparent;
+        border: 0;
+        z-index: 10;
+    }
+
+    .item {
+        min-height: @carousel-height;
+        padding-left: 46px;
+        padding-right: 46px;
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        height: @carousel-height;
+    }
+
+    .carousel-caption {
+        background-color: transparent;
+        position: static;
+        max-width: 90%;
+        padding: 20px;
+        margin-top: 150px;
+
+        blockquote {
+            -webkit-text-shadow: 0 1px 1px rgba(0,0,0,.4);
+            text-shadow: 0 1px 1px rgba(0,0,0,.4);
+        }
+
+        h1, .lead {
+            margin: 0;
+            line-height: 1.25;
+            color: #fff;
+            -webkit-text-shadow: 0 1px 1px rgba(0,0,0,.4);
+            text-shadow: 0 1px 1px rgba(0,0,0,.4);
+        }
+
+        .btn {
+            margin-top: 10px;
+        }
+    }
+}
+/*#endregion*/
+
+/*#region Input Sizing*/
+
+// Fixes to input sizing (based off bootstrap input sizes)
+@base-input-size: 60px;
+@select-offset: 14px;
+@icon-offset: 27px;
+@size-mini: @base-input-size;
+@size-small: @base-input-size * 1.5;
+@size-medium: @base-input-size * 2.5;
+@size-large: @base-input-size * 3.5;
+@size-xlarge: @base-input-size * 4.5;
+@size-xxlarge: @base-input-size * 8;
+
+.input-mini {
+  width: @size-mini;
+}
+
+.input-small {
+  width: @size-small;
+}
+
+.input-medium {
+  width: @size-medium;
+}
+
+.input-large {
+  width: @size-large;
+}
+
+.input-xlarge {
+  width: @size-xlarge;
+}
+
+.input-xxlarge {
+  width: @size-xxlarge;
+}
+
+.input-append.input-icon, .input-prepend.input-icon {
+    .input-mini {
+      width: @size-mini - @icon-offset;
+    }
+
+    .input-small {
+      width: @size-small - @icon-offset;
+    }
+
+    .input-medium {
+      width: @size-medium - @icon-offset;
+    }
+
+    .input-large {
+      width: @size-large - @icon-offset;
+    }
+
+    .input-xlarge {
+      width: @size-xlarge - @icon-offset;
+    }
+
+    .input-xxlarge {
+      width: @size-xxlarge - @icon-offset;
+    }
+}
+
+select, .select2-container {
+    &.input-mini {
+        width: @size-mini + @select-offset;
+    }
+
+    &.input-small {
+      width: @size-small + @select-offset;
+    }
+
+    &.input-medium {
+      width: @size-medium + @select-offset;
+    }
+
+    &.input-large {
+      width: @size-large + @select-offset;
+    }
+
+    &.input-xlarge {
+      width: @size-xlarge + @select-offset;
+    }
+
+    &.input-xxlarge {
+      width: @size-xxlarge + @select-offset;
+    }
+}
+
+.form-horizontal .input-prepend + .help-inline + .help-block {
+    margin-top: 10px;
+}
+/*#endregion*/
+
+/*#region Form Styles*/
+option.empty-opt {
+    color: #999999;
+    font-style: italic;
+}
+
+.control-group {
+    .controls {
+        padding-left: 15px;
+    }
+
+        .controls.required {
+            background: transparent url("../../Images/required.png") no-repeat 0 8px;
+        }
+}
+
+    .control-group.error {
+        .control-label, input, select, textarea {
+            color: inherit;
+        }
+    }
+
+legend {
+    font-weight: bold;
+}
+/*#endregion*/

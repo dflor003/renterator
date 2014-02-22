@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Jasmine Spec Runner</title>
+
+    <link rel="shortcut icon" type="image/png" href="@Renterator.Web.Scripts.lib.jasmine.jasmine_favicon_png">
+
+    <link href="@Renterator.Web.Scripts.lib.jasmine.jasmine_css" rel="stylesheet" />
+    <script type="text/javascript" src="@Renterator.Web.Scripts.lib.jasmine.jasmine_js"></script>
+    <script type="text/javascript" src="@Renterator.Web.Scripts.lib.jasmine.jasmine_html_js"></script>
+    <script type="text/javascript" src="@Renterator.Web.Scripts.lib.jasmine.jasmine_rowtests_1_0_1_js"></script>
+    @Styles.Render("~/bundles/css/lib")
+    @Styles.Render("~/bundles/css/fmm")
+
+    <!-- include source files here... -->
+    @Scripts.Render("~/bundles/scripts/lib")
+    @Scripts.Render("~/bundles/scripts/fmm")
+
+    <!-- include spec files here... -->
+    @{
+        const string testVirtualPath = "~/Scripts/tests/";
+        string testPhysicalPath = this.Server.MapPath(testVirtualPath);
+        IEnumerable<string> testFilePaths =
+            from machinePath in Directory.EnumerateFiles(testPhysicalPath, "*.js", SearchOption.AllDirectories)
+            let virtualPath = testVirtualPath + machinePath.Replace(testPhysicalPath, string.Empty)
+            select Url.Content(virtualPath);
+        foreach (string path in testFilePaths)
+        {
+            <script type="text/javascript" src="@path"></script>
+        }
+    }
+
+    <script type="text/javascript">
+        (function () {
+            var jasmineEnv = jasmine.getEnv();
+            jasmineEnv.updateInterval = 1000;
+
+            var htmlReporter = new jasmine.HtmlReporter();
+
+            jasmineEnv.addReporter(htmlReporter);
+
+            jasmineEnv.specFilter = function (spec) {
+                return htmlReporter.specFilter(spec);
+            };
+
+            var currentWindowOnload = window.onload;
+
+            window.onload = function () {
+                if (currentWindowOnload) {
+                    currentWindowOnload();
+                }
+                execJasmine();
+            };
+
+            function execJasmine() {
+                jasmineEnv.execute();
+            }
+
+        })();
+    </script>
+
+</head>
+
+<body>
+</body>
+</html>

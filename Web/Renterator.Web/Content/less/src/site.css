@@ -1,0 +1,190 @@
+/**
+ * Main styles
+ */
+/*# sourceMappingURL=site.css.map */
+/*# sourceMappingURL=site.css.map */
+/*# sourceMappingURL=site.css.map */
+/*# sourceMappingURL=site.css.map */
+/*# sourceMappingURL=site.css.map */
+@media (min-width: 980px) {
+  body.with-footer {
+    padding-bottom: 26px;
+  }
+}
+body {
+  padding-left: 0;
+  padding-right: 0;
+}
+footer.footer {
+  position: fixed;
+  height: 25px;
+  left: auto;
+  background-color: #ddd;
+  border-top: 1px solid #ccc;
+  bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+/*# sourceMappingURL=site.css.map */
+/*# sourceMappingURL=site.css.map */
+ul {
+  list-style-image: url('../../Images/bullet.png');
+}
+.alert li {
+  list-style: none;
+}
+.control-label {
+  font-weight: bold;
+}
+@media (max-width: 979px) {
+  .navbar-fixed-top {
+    margin-bottom: 0;
+  }
+}
+.carousel {
+  margin-bottom: 10px;
+}
+.carousel .container {
+  position: relative;
+  z-index: 9;
+}
+.carousel .carousel-control {
+  height: 80px;
+  margin-top: 0;
+  font-size: 120px;
+  -webkit-text-shadow: 0 1px 1px #000000;
+  -webkit-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 1px #000000;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  background-color: transparent;
+  border: 0;
+  z-index: 10;
+}
+.carousel .item {
+  min-height: 500px;
+  padding-left: 46px;
+  padding-right: 46px;
+}
+.carousel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
+.carousel .carousel-caption {
+  background-color: transparent;
+  position: static;
+  max-width: 90%;
+  padding: 20px;
+  margin-top: 150px;
+}
+.carousel .carousel-caption blockquote {
+  -webkit-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+.carousel .carousel-caption h1,
+.carousel .carousel-caption .lead {
+  margin: 0;
+  line-height: 1.25;
+  color: #fff;
+  -webkit-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+.carousel .carousel-caption .btn {
+  margin-top: 10px;
+}
+/*# sourceMappingURL=site.css.map */
+/*# sourceMappingURL=site.css.map */
+.input-mini {
+  width: 60px;
+}
+.input-small {
+  width: 90px;
+}
+.input-medium {
+  width: 150px;
+}
+.input-large {
+  width: 210px;
+}
+.input-xlarge {
+  width: 270px;
+}
+.input-xxlarge {
+  width: 480px;
+}
+.input-append.input-icon .input-mini,
+.input-prepend.input-icon .input-mini {
+  width: 33px;
+}
+.input-append.input-icon .input-small,
+.input-prepend.input-icon .input-small {
+  width: 63px;
+}
+.input-append.input-icon .input-medium,
+.input-prepend.input-icon .input-medium {
+  width: 123px;
+}
+.input-append.input-icon .input-large,
+.input-prepend.input-icon .input-large {
+  width: 183px;
+}
+.input-append.input-icon .input-xlarge,
+.input-prepend.input-icon .input-xlarge {
+  width: 243px;
+}
+.input-append.input-icon .input-xxlarge,
+.input-prepend.input-icon .input-xxlarge {
+  width: 453px;
+}
+select.input-mini,
+.select2-container.input-mini {
+  width: 74px;
+}
+select.input-small,
+.select2-container.input-small {
+  width: 104px;
+}
+select.input-medium,
+.select2-container.input-medium {
+  width: 164px;
+}
+select.input-large,
+.select2-container.input-large {
+  width: 224px;
+}
+select.input-xlarge,
+.select2-container.input-xlarge {
+  width: 284px;
+}
+select.input-xxlarge,
+.select2-container.input-xxlarge {
+  width: 494px;
+}
+.form-horizontal .input-prepend + .help-inline + .help-block {
+  margin-top: 10px;
+}
+/*# sourceMappingURL=site.css.map */
+/*# sourceMappingURL=site.css.map */
+option.empty-opt {
+  color: #999999;
+  font-style: italic;
+}
+.control-group .controls {
+  padding-left: 15px;
+}
+.control-group .controls.required {
+  background: transparent url("../../Images/required.png") no-repeat 0 8px;
+}
+.control-group.error .control-label,
+.control-group.error input,
+.control-group.error select,
+.control-group.error textarea {
+  color: inherit;
+}
+legend {
+  font-weight: bold;
+}
+/*# sourceMappingURL=site.css.map */
+/*# sourceMappingURL=site.css.map */
