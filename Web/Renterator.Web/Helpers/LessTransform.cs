@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace Renterator.Web
+namespace Renterator.Web.Helpers
 {
 	public class LessTransform : IBundleTransform
 	{

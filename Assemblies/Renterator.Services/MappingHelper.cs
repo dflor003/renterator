@@ -15,9 +15,9 @@ namespace Renterator.Services
                 return;
             }
 
-            Mapper.CreateMap<User, UserInfo>()
+            Mapper.CreateMap<User, UserAccountCreationInfo>()
                 .ForMember(dto => dto.Password, prop => prop.Ignore());
-            Mapper.CreateMap<UserInfo, User>()
+            Mapper.CreateMap<UserAccountCreationInfo, User>()
                 .ForMember(ent => ent.PasswordHash, prop => prop.Ignore());
 
             isInitialized = true;

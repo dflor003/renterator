@@ -163,10 +163,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Api\AccountsController.cs" />
     <Compile Include="Helpers\LessTransform.cs" />
     <Compile Include="Helpers\HandleAjaxErrorAttribute.cs" />
-    <Compile Include="Helpers\ModelExtensions.cs" />
-    <Compile Include="Helpers\TenantSecuredAttribute.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MappingConfig.cs" />
@@ -185,8 +184,6 @@
     <Compile Include="JasmineController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="PasswordRecoveryController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -203,22 +200,25 @@
   <ItemGroup>
     <Content Include="Content\css\lib\ladda\ladda.css" />
     <Content Include="Content\css\lib\ladda\ladda.min.css" />
+    <Content Include="Content\less\site.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
     <Content Include="Content\less\src\site.css">
       <DependentUpon>site.less</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="App_Code\UiHelpers.cshtml" />
-    <Content Include="Content\less\fmm.admin.less" />
+    <Content Include="Content\less\site.less" />
     <Content Include="Content\less\src\site.less" />
-    <Content Include="Content\less\fmm.marketing.less" />
     <Content Include="Content\less\src\site.css.map">
       <DependentUpon>site.css</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.0.js" />
-    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Content\less\site.css.map">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
+    <Content Include="Scripts\lib\jquery\jquery-2.1.0.js" />
+    <Content Include="Scripts\lib\jquery\jquery-2.1.0.min.js" />
     <Content Include="Scripts\lib\blockui\jquery.blockUI.js" />
     <Content Include="Scripts\lib\blockui\jquery.blockUI.min.js" />
     <Content Include="Scripts\lib\bootstrap\bootstrap.js" />
@@ -230,62 +230,59 @@
     <Content Include="Scripts\lib\jasmine\jasmine_favicon.png" />
     <Content Include="Scripts\lib\jquery-deparam\jquery-deparam.js" />
     <Content Include="Scripts\lib\jquery-deparam\jquery-deparam.min.js" />
-    <Content Include="Scripts\lib\jqueryui\jquery-ui-1.10.2.js" />
-    <Content Include="Scripts\lib\jqueryui\jquery-ui-1.10.2.min.js" />
-    <Content Include="Scripts\lib\jquery\jquery-1.9.1.js" />
-    <Content Include="Scripts\lib\jquery\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\lib\knockout\knockout-2.3.0.debug.js" />
-    <Content Include="Scripts\lib\knockout\knockout-2.3.0.js" />
+    <Content Include="Scripts\lib\knockout\knockout-3.0.0.debug.js" />
+    <Content Include="Scripts\lib\knockout\knockout-3.0.0.js" />
     <Content Include="Scripts\lib\knockout\knockout.validation.js" />
     <Content Include="Scripts\lib\knockout\knockout.validation.min.js" />
     <Content Include="Scripts\lib\knockout\koExternalTemplateEngine_all.js" />
+    <Content Include="Scripts\lib\knockout\koExternalTemplateEngine_all.min.js" />
     <Content Include="Scripts\lib\ladda\ladda.js" />
     <Content Include="Scripts\lib\ladda\ladda.min.js" />
     <Content Include="Scripts\lib\ladda\spin.js" />
     <Content Include="Scripts\lib\ladda\spin.min.js" />
-    <Content Include="Content\less\lib\.csscomb.json" />
-    <Content Include="Content\less\lib\.csslintrc" />
-    <Content Include="Content\less\lib\alerts.less" />
-    <Content Include="Content\less\lib\badges.less" />
-    <Content Include="Content\less\lib\bootstrap.less" />
-    <Content Include="Content\less\lib\breadcrumbs.less" />
-    <Content Include="Content\less\lib\button-groups.less" />
-    <Content Include="Content\less\lib\buttons.less" />
-    <Content Include="Content\less\lib\carousel.less" />
-    <Content Include="Content\less\lib\close.less" />
-    <Content Include="Content\less\lib\code.less" />
-    <Content Include="Content\less\lib\component-animations.less" />
-    <Content Include="Content\less\lib\dropdowns.less" />
-    <Content Include="Content\less\lib\forms.less" />
-    <Content Include="Content\less\lib\glyphicons.less" />
-    <Content Include="Content\less\lib\grid.less" />
-    <Content Include="Content\less\lib\input-groups.less" />
-    <Content Include="Content\less\lib\jumbotron.less" />
-    <Content Include="Content\less\lib\labels.less" />
-    <Content Include="Content\less\lib\list-group.less" />
-    <Content Include="Content\less\lib\media.less" />
-    <Content Include="Content\less\lib\mixins.less" />
-    <Content Include="Content\less\lib\modals.less" />
-    <Content Include="Content\less\lib\navbar.less" />
-    <Content Include="Content\less\lib\navs.less" />
-    <Content Include="Content\less\lib\normalize.less" />
-    <Content Include="Content\less\lib\pager.less" />
-    <Content Include="Content\less\lib\pagination.less" />
-    <Content Include="Content\less\lib\panels.less" />
-    <Content Include="Content\less\lib\popovers.less" />
-    <Content Include="Content\less\lib\print.less" />
-    <Content Include="Content\less\lib\progress-bars.less" />
-    <Content Include="Content\less\lib\responsive-utilities.less" />
-    <Content Include="Content\less\lib\scaffolding.less" />
-    <Content Include="Content\less\lib\tables.less" />
-    <Content Include="Content\less\lib\theme.less" />
-    <Content Include="Content\less\lib\thumbnails.less" />
-    <Content Include="Content\less\lib\tooltip.less" />
-    <Content Include="Content\less\lib\type.less" />
-    <Content Include="Content\less\lib\utilities.less" />
-    <Content Include="Content\less\lib\variables.less" />
-    <Content Include="Content\less\lib\wells.less" />
-    <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <Content Include="Content\less\lib\bootstrap\.csscomb.json" />
+    <Content Include="Content\less\lib\bootstrap\.csslintrc" />
+    <Content Include="Content\less\lib\bootstrap\alerts.less" />
+    <Content Include="Content\less\lib\bootstrap\badges.less" />
+    <Content Include="Content\less\lib\bootstrap\bootstrap.less" />
+    <Content Include="Content\less\lib\bootstrap\breadcrumbs.less" />
+    <Content Include="Content\less\lib\bootstrap\button-groups.less" />
+    <Content Include="Content\less\lib\bootstrap\buttons.less" />
+    <Content Include="Content\less\lib\bootstrap\carousel.less" />
+    <Content Include="Content\less\lib\bootstrap\close.less" />
+    <Content Include="Content\less\lib\bootstrap\code.less" />
+    <Content Include="Content\less\lib\bootstrap\component-animations.less" />
+    <Content Include="Content\less\lib\bootstrap\dropdowns.less" />
+    <Content Include="Content\less\lib\bootstrap\forms.less" />
+    <Content Include="Content\less\lib\bootstrap\glyphicons.less" />
+    <Content Include="Content\less\lib\bootstrap\grid.less" />
+    <Content Include="Content\less\lib\bootstrap\input-groups.less" />
+    <Content Include="Content\less\lib\bootstrap\jumbotron.less" />
+    <Content Include="Content\less\lib\bootstrap\labels.less" />
+    <Content Include="Content\less\lib\bootstrap\list-group.less" />
+    <Content Include="Content\less\lib\bootstrap\media.less" />
+    <Content Include="Content\less\lib\bootstrap\mixins.less" />
+    <Content Include="Content\less\lib\bootstrap\modals.less" />
+    <Content Include="Content\less\lib\bootstrap\navbar.less" />
+    <Content Include="Content\less\lib\bootstrap\navs.less" />
+    <Content Include="Content\less\lib\bootstrap\normalize.less" />
+    <Content Include="Content\less\lib\bootstrap\pager.less" />
+    <Content Include="Content\less\lib\bootstrap\pagination.less" />
+    <Content Include="Content\less\lib\bootstrap\panels.less" />
+    <Content Include="Content\less\lib\bootstrap\popovers.less" />
+    <Content Include="Content\less\lib\bootstrap\print.less" />
+    <Content Include="Content\less\lib\bootstrap\progress-bars.less" />
+    <Content Include="Content\less\lib\bootstrap\responsive-utilities.less" />
+    <Content Include="Content\less\lib\bootstrap\scaffolding.less" />
+    <Content Include="Content\less\lib\bootstrap\tables.less" />
+    <Content Include="Content\less\lib\bootstrap\theme.less" />
+    <Content Include="Content\less\lib\bootstrap\thumbnails.less" />
+    <Content Include="Content\less\lib\bootstrap\tooltip.less" />
+    <Content Include="Content\less\lib\bootstrap\type.less" />
+    <Content Include="Content\less\lib\bootstrap\utilities.less" />
+    <Content Include="Content\less\lib\bootstrap\variables.less" />
+    <Content Include="Content\less\lib\bootstrap\wells.less" />
+    <Content Include="Scripts\lib\jquery\jquery-2.1.0.min.map" />
     <None Include="Scripts\lib\linqjs\linq-vsdoc.js" />
     <Content Include="Scripts\lib\linqjs\linq.jquery.js" />
     <Content Include="Scripts\lib\linqjs\linq.js" />
@@ -298,7 +295,6 @@
     <Content Include="Scripts\lib\select2\select2.min.js" />
     <Content Include="Scripts\lib\select2\select2.png" />
     <Content Include="Scripts\lib\select2\select2x2.png" />
-    <Content Include="Scripts\modernizr-2.7.1.js" />
     <Content Include="Scripts\templates\MessageLog.tmpl.html" />
     <Content Include="Scripts\tests\TestSetup.js" />
     <Content Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
@@ -333,23 +329,20 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\AccountSetup.cshtml" />
     <Content Include="Views\Jasmine\SpecRunner.cshtml" />
     <Content Include="Views\PasswordRecovery\ForgotPassword.cshtml" />
-    <Content Include="Views\PasswordRecovery\InvalidToken.cshtml" />
     <Content Include="Views\PasswordRecovery\Layout.cshtml" />
     <Content Include="Views\PasswordRecovery\PasswordReset.cshtml" />
     <Content Include="Views\Shared\LoginForm.cshtml" />
     <Content Include="Views\Shared\MainLayout.cshtml" />
-    <Content Include="Views\Shared\MarketingSiteLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Scripts\src\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -65,7 +65,7 @@ namespace Renterator.Services.AppServices.Security
                     .FirstOrDefault();
             if (userInfo == null)
             {
-                return new Result(false, new LogMessage(MessageType.Error, MsgInvalidEmail));
+                return new Result(new LogMessage(MessageType.Error, MsgInvalidEmail));
             }
 
             // Get email url and body
@@ -95,14 +95,14 @@ namespace Renterator.Services.AppServices.Security
 #else
                 string resultMessage = MsgSmtpError;
 #endif
-                return new Result(false, new LogMessage(MessageType.Error, resultMessage));
+                return new Result(new LogMessage(MessageType.Error, resultMessage));
             }
 
             // Success, return success message
-            return new Result(true, new LogMessage(MessageType.Success, MsgEmailSent));
+            return new Result(new LogMessage(MessageType.Success, MsgEmailSent));
         }
 
-        public Result<PasswordResetInfo> IsValidPasswordResetToken(string tokenString)
+        public Result<PasswordResetInfo> GetPasswordResetInfo(string tokenString)
         {
             Guid resetToken;
             string userEmail;
@@ -112,31 +112,27 @@ namespace Renterator.Services.AppServices.Security
                 !Guid.TryParse(tokenString, out resetToken) ||
                 !cache.TryGet(CacheKeys.ForgotPasswordGuid(resetToken), out userEmail))
             {
-                return new Result<PasswordResetInfo>(null, false, new LogMessage(MessageType.Error, MsgInvalidResetToken));
+                throw new ValidationException(MsgInvalidResetToken);
             }
 
             // Valid, return success
             PasswordResetInfo resultInfo = new PasswordResetInfo { Token = resetToken, Email = userEmail };
-            return new Result<PasswordResetInfo>(resultInfo, true);
+            return new Result<PasswordResetInfo>(resultInfo);
         }
 
         public Result ResetPassword(string tokenString, string userEmail, string newPassword)
         {
             // Re-validate token first
-            Result<PasswordResetInfo> isTokenValidResult = IsValidPasswordResetToken(tokenString);
-            if (!isTokenValidResult.IsSuccess)
-            {
-                return isTokenValidResult;
-            }
+            Result<PasswordResetInfo> passwordResetInfo = GetPasswordResetInfo(tokenString);
 
             // Remove token from cache
-            cache.Remove(CacheKeys.ForgotPasswordGuid(isTokenValidResult.Value.Token));
+            cache.Remove(CacheKeys.ForgotPasswordGuid(passwordResetInfo.Value.Token));
 
             // Get the user object
-            User user = dataAccessor.Users.FirstOrDefault(x => x.Email == userEmail);
+            User user = dataAccessor.Users.SingleOrDefault(x => x.Email == userEmail);
             if (user == null)
             {
-                return new Result(false, new LogMessage(MessageType.Error, MsgInvalidEmail));
+                throw new ValidationException(MsgInvalidEmail);
             }
 
             // Reset password if we have a valid user
@@ -145,7 +141,7 @@ namespace Renterator.Services.AppServices.Security
             dataAccessor.SaveChanges();
 
             // Return a success message
-            return new Result(true, new LogMessage(MessageType.Success, MsgPasswordResetSuccess));
+            return new Result(new LogMessage(MessageType.Success, MsgPasswordResetSuccess));
         }
 
         #endregion

@@ -5,10 +5,8 @@ using Renterator.Services.Validators;
 
 namespace Renterator.Services.Dto
 {
-    public class UserInfo
+    public class UserAccountCreationInfo
     {
-        public int Id { get; set; }
-
         [Required]
         [ValidateEmail]
         public string Email { get; set; }
@@ -22,13 +20,5 @@ namespace Renterator.Services.Dto
 
         [Required]
         public string LastName { get; set; }
-
-        public bool IsActive { get; set; }
-
-        public bool IsAdmin { get; set; }
-
-        public DateTime LastLoginDate { get; set; }
-
-        public ICollection<WebsiteInfo> Websites { get; set; }
     }
 }

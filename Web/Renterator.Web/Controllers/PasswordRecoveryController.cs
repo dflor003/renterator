@@ -27,11 +27,11 @@ namespace Renterator.Web.Controllers
         [HttpGet]
         public virtual ActionResult PasswordReset(string token)
         {
-            Result<PasswordResetInfo> isValidResult = passwordService.IsValidPasswordResetToken(token);
-            if (!isValidResult.IsSuccess)
-            {
-                return View(Views.InvalidToken, isValidResult.Messages.Single());
-            }
+            Result<PasswordResetInfo> isValidResult = passwordService.GetPasswordResetInfo(token);
+            ////if (!isValidResult.IsSuccess)
+            ////{
+            ////    return View(Views.InvalidToken, isValidResult.Messages.Single());
+            ////}
 
             return View(Views.PasswordReset, isValidResult.Value);
         }

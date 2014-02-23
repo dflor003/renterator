@@ -1,42 +1,37 @@
 ﻿using System.Web.Optimization;
+using Renterator.Web.Helpers;
 
 namespace Renterator.Web
 {
     public static class BundleConfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            // Bootstrap
+            StyleBundle bootstrapBundle = new StyleBundle("~/bundles/css/bootstrap");
+            bootstrapBundle.Include("~/Content/less/lib/bootstrap.less");
+            bootstrapBundle.Transforms.Add(new LessTransform());
+            bootstrapBundle.Transforms.Add(new CssMinify());
+            bundles.Add(bootstrapBundle);
+
+            // Other css libs
             bundles.Add(new StyleBundle("~/bundles/css/lib").Include(
-                "~/Css/bootstrap/bootstrap.css",
-                "~/Css/bootstrap/bootstrap-responsive.css",
-                "~/Css/ladda/ladda.css",
+                "~/Content/css/lib/ladda/ladda.css",
                 "~/Scripts/lib/select2/select2.css",
                 "~/Scripts/lib/select2/select2-bootstrap.css"));
 
-            var fmmAdminLess = new StyleBundle("~/bundles/css/fmm-admin").Include(
-                    "~/Css/fmm/fmm.main.less",
-                    "~/Css/fmm/fmm.admin.less");
-            fmmAdminLess.Transforms.Add(new LessTransform());
-            fmmAdminLess.Transforms.Add(new CssMinify());
-            bundles.Add(fmmAdminLess);
-
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            var fmmMarketingLess = new StyleBundle("~/bundles/css/fmm-marketing").Include(
-                    "~/Css/fmm/fmm.main.less",
-                    "~/Css/fmm/fmm.marketing.less");
-            fmmMarketingLess.Transforms.Add(new LessTransform());
-            fmmMarketingLess.Transforms.Add(new CssMinify());
-            bundles.Add(fmmMarketingLess);
+            // Less files
+            var siteLess = new StyleBundle("~/bundles/css/site").Include(
+                    "~/Content/less/site.less");
+            siteLess.Transforms.Add(new LessTransform());
+            siteLess.Transforms.Add(new CssMinify());
+            bundles.Add(siteLess);
 
             // Library js
             bundles.Add(new ScriptBundle("~/bundles/scripts/lib").Include(
                 "~/Scripts/lib/jquery/jquery-{version}.js",
-                "~/Scripts/lib/jqueryui/jquery-ui-{version}.js",
                 "~/Scripts/lib/blockui/jquery.blockui.js",
                 "~/Scripts/lib/jquery-deparam/jquery-deparam.js",
-                "~/Scripts/lib/modernizr/modernizr-{version}.js",
                 "~/Scripts/lib/bootstrap/bootstrap.js",
                 "~/Scripts/lib/knockout/knockout-{version}.debug.js",
                 "~/Scripts/lib/knockout/knockout.validation.js",
@@ -46,20 +41,12 @@ namespace Renterator.Web
                 "~/Scripts/lib/ladda/ladda.js",
                 "~/Scripts/lib/select2/select2.js"));
 
-            // Fmm js
-            bundles.Add(new ScriptBundle("~/bundles/scripts/fmm").Include(
+            // Other js
+            bundles.Add(new ScriptBundle("~/bundles/scripts/src").Include(
                 // Common files
-                "~/Scripts/fmm/common/Utils.js",
-                "~/Scripts/fmm/common/ServiceHelper.js",
-                "~/Scripts/fmm/common/BindingHandlers.js",
-                "~/Scripts/fmm/common/MessageLog.js",
-                "~/Scripts/fmm/common/BaseViewModel.js",
 
                 // View models
-                "~/Scripts/fmm/viewmodel/security/Login.js",
-                "~/Scripts/fmm/viewmodel/security/AccountSetup.js",
-                "~/Scripts/fmm/viewmodel/security/ForgotPassword.js",
-                "~/Scripts/fmm/viewmodel/security/PasswordReset.js"));
+                ));
         }
     }
 }

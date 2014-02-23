@@ -11,6 +11,7 @@ using Renterator.DataAccess.Infrastructure;
 using Renterator.DataAccess.Model;
 using Renterator.Services.Dto;
 using Renterator.Services.Infrastructure;
+using ValidationException = Renterator.Services.Infrastructure.ValidationException;
 
 namespace Renterator.Services.AppServices.Security
 {
@@ -26,8 +27,6 @@ namespace Renterator.Services.AppServices.Security
 
         private readonly IDataAccessor dataAccessor;
         private readonly HttpContextBase context;
-        private readonly Random random;
-
         #endregion
 
         #region Constructors
@@ -41,20 +40,20 @@ namespace Renterator.Services.AppServices.Security
         {
             this.dataAccessor = Utils.NullArgumentCheck("dataAccessor", dataAccessor);
             this.context = Utils.NullArgumentCheck("context", context);
-            this.random = Utils.NullArgumentCheck("randomGenerator", randomGenerator);
+            Utils.NullArgumentCheck("randomGenerator", randomGenerator);
         }
 
         #endregion
 
         #region Public Methods
 
-        public Result CreateAccount(UserInfo userInfo)
+        public Result CreateAccount(UserAccountCreationInfo userInfo)
         {
             User ignored;
             return CreateAccount(userInfo, out ignored);
         }
 
-        public Result CreateAccount(UserInfo userInfo, out User user)
+        public Result CreateAccount(UserAccountCreationInfo userInfo, out User user)
         {
             // Validate dto
             ValidationHelper.ValidateModel(userInfo);
@@ -71,7 +70,7 @@ namespace Renterator.Services.AppServices.Security
             string email = user.Email;
             if (dataAccessor.Users.Any(other => email == other.Email))
             {
-                return new Result(false, new LogMessage(MessageType.Error, MsgAccountWithEmailExists));
+                throw new ValidationException(MsgAccountWithEmailExists);
             }
 
             // Do save
@@ -87,7 +86,7 @@ namespace Renterator.Services.AppServices.Security
             if (loginInfo == null || string.IsNullOrWhiteSpace(loginInfo.Email) ||
                 string.IsNullOrWhiteSpace(loginInfo.Password))
             {
-                return new Result(false, new LogMessage(MessageType.Error, MsgLoginInfoNotEntered));
+                throw new ValidationException(MsgLoginInfoNotEntered);
             }
 
             // Get matching pwd and hash from db
@@ -103,26 +102,12 @@ namespace Renterator.Services.AppServices.Security
             // Check match
             if (dbInfo == null || !PasswordHashHelper.ValidatePassword(loginInfo.Password, dbInfo.PasswordHash))
             {
-                return new Result(false, new LogMessage(MessageType.Error, MsgInvalidUsernameOrPwd));
+                throw new ValidationException(MsgInvalidUsernameOrPwd);
             }
 
             // Login succeeded, set forms cookie
             SetFormsAuthenticationCookie(dbInfo.Email);
-            return new Result(true);
-        }
-
-        public string GenerateWebsiteCode()
-        {
-            const string TenantIdCharacters = @"abcdefghijklmnopqrstuvwxyz0123456789";
-            const int TenantIdLength = 8;
-
-            char[] resultChars = new char[TenantIdLength];
-            for (int i = 0; i < resultChars.Length; i++)
-            {
-                resultChars[i] = TenantIdCharacters[random.Next(TenantIdCharacters.Length)];
-            }
-
-            return new string(resultChars);
+            return new Result();
         }
 
         public void Dispose()

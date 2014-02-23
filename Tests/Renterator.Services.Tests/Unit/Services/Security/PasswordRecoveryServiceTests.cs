@@ -73,7 +73,6 @@ namespace Renterator.Services.Tests.Unit.Services.Security
 
             // Should have error message
             Assert.IsNotNull(result);
-            Assert.IsFalse(result.IsSuccess);
             Assert.IsNotNull(result.Messages);
             Assert.AreEqual(1, result.Messages.Count);
 

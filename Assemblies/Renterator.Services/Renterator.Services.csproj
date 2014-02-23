@@ -75,14 +75,11 @@
     <Compile Include="AppServices\Security\IAuthenticationService.cs" />
     <Compile Include="AppServices\Security\AuthenticationService.cs" />
     <Compile Include="AppServices\Security\PasswordRecoveryService.cs" />
-    <Compile Include="Dto\Address.cs" />
-    <Compile Include="Dto\DashboardInfo.cs" />
     <Compile Include="Dto\LoginInfo.cs" />
     <Compile Include="Infrastructure\LogMessage.cs" />
     <Compile Include="Infrastructure\MessageType.cs" />
     <Compile Include="Infrastructure\Result.cs" />
-    <Compile Include="Dto\UserInfo.cs" />
-    <Compile Include="Dto\WebsiteInfo.cs" />
+    <Compile Include="Dto\UserAccountCreationInfo.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="MappingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

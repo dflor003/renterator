@@ -7,8 +7,8 @@ namespace Renterator.Services.AppServices.Security
 {
     public interface IAuthenticationService : IDisposable
     {
-        Result CreateAccount(UserInfo userInfo);
+        Result CreateAccount(UserAccountCreationInfo userInfo);
         Result Login(LoginInfo loginInfo);
-        Result CreateAccount(UserInfo userInfo, out User user);
+        Result CreateAccount(UserAccountCreationInfo userInfo, out User user);
     }
 }

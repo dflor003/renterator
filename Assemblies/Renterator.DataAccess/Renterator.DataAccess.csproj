@@ -116,9 +116,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Renterator.Common\Renterator.Common.csproj">
       <Project>{4D807E21-219D-4929-89B8-F0ED1F7C013B}</Project>

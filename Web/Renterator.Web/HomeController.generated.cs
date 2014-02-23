@@ -25,6 +25,9 @@ namespace Renterator.Web.Controllers
     public partial class HomeController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public HomeController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected HomeController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -41,18 +44,6 @@ namespace Renterator.Web.Controllers
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
         }
 
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult Login()
-        {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Login);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult CreateAccount()
-        {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CreateAccount);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController Actions { get { return MVC.Home; } }
@@ -69,8 +60,6 @@ namespace Renterator.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Login = "Login";
-            public readonly string CreateAccount = "CreateAccount";
             public readonly string Index = "Index";
             public readonly string AccountSetup = "AccountSetup";
         }
@@ -78,31 +67,11 @@ namespace Renterator.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Login = "Login";
-            public const string CreateAccount = "CreateAccount";
             public const string Index = "Index";
             public const string AccountSetup = "AccountSetup";
         }
 
 
-        static readonly ActionParamsClass_Login s_params_Login = new ActionParamsClass_Login();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Login LoginParams { get { return s_params_Login; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Login
-        {
-            public readonly string loginInfo = "loginInfo";
-        }
-        static readonly ActionParamsClass_CreateAccount s_params_CreateAccount = new ActionParamsClass_CreateAccount();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_CreateAccount CreateAccountParams { get { return s_params_CreateAccount; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_CreateAccount
-        {
-            public readonly string userInfo = "userInfo";
-            public readonly string businessName = "businessName";
-            public readonly string businessType = "businessType";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -129,32 +98,6 @@ namespace Renterator.Web.Controllers
     public partial class T4MVC_HomeController : Renterator.Web.Controllers.HomeController
     {
         public T4MVC_HomeController() : base(Dummy.Instance) { }
-
-        [NonAction]
-        partial void LoginOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, Renterator.Services.Dto.LoginInfo loginInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.JsonResult Login(Renterator.Services.Dto.LoginInfo loginInfo)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Login);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "loginInfo", loginInfo);
-            LoginOverride(callInfo, loginInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void CreateAccountOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, Renterator.Services.Dto.UserInfo userInfo, string businessName, string businessType);
-
-        [NonAction]
-        public override System.Web.Mvc.JsonResult CreateAccount(Renterator.Services.Dto.UserInfo userInfo, string businessName, string businessType)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CreateAccount);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userInfo", userInfo);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "businessName", businessName);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "businessType", businessType);
-            CreateAccountOverride(callInfo, userInfo, businessName, businessType);
-            return callInfo;
-        }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
