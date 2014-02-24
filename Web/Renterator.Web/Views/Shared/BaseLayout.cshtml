@@ -1,0 +1,36 @@
+﻿@using Newtonsoft.Json
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@(ViewBag.Title != null ? "Renterator - " + ViewBag.Title : "Renterator")</title>
+    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" />
+    @Styles.Render("~/bundles/css/bootstrap")
+    @Styles.Render("~/bundles/css/lib")
+    @Styles.Render("~/bundles/css/site")
+    @RenderSection("styles", required: false)
+    @{
+        string appPath = HttpContext.Current.Request.ApplicationPath;
+        var globalVars = new
+        {
+            RootPath = appPath == "/" ? string.Empty : appPath
+        };
+    }
+    <script type="text/javascript">
+        window.GlobalVars = @(Html.Raw(JsonConvert.SerializeObject(globalVars)));
+    </script>
+</head>
+<body class="container-fluid">
+    @RenderBody()
+    
+    @Scripts.Render("~/bundles/scripts/lib")
+    @Scripts.Render("~/bundles/scripts/src")
+    <script type="text/javascript">
+        infuser.defaults.templateUrl = '@Url.Content(Links.Scripts.templates.Url())';
+        infuser.defaults.templateSuffix = ".tmpl.html";
+        ko.validation.init({ insertMessages: false, errorElementClass: 'has-error', decorateInputElement: true, decorateElementOnModified: true, messagesOnModified: true });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

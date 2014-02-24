@@ -1,35 +1,20 @@
 ﻿@using Newtonsoft.Json
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@(ViewBag.Title != null ? "Renterator - " + ViewBag.Title : "Renterator")</title>
-    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" />
-    @Styles.Render("~/bundles/css/bootstrap")
-    @Styles.Render("~/bundles/css/lib")
-    @Styles.Render("~/bundles/css/site")
-    @RenderSection("styles", required: false)
-    @{
-        string appPath = HttpContext.Current.Request.ApplicationPath;
-        var globalVars = new
-        {
-            RootPath = appPath == "/" ? string.Empty : appPath
-        };
-    }
-    <script type="text/javascript">
-        window.GlobalVars = @(Html.Raw(JsonConvert.SerializeObject(globalVars)));
-        infuser.defaults.templateUrl = GlobalVars.RootPath + "/Scripts/templates/";
-        infuser.defaults.templateSuffix = ".tmpl.html";
-    </script>
-</head>
-<body class="container with-footer">
-    @RenderBody()
-    <footer class="footer span12 text-center">
-        <small class="muted">&copy; @DateTime.Now.Year DanilF. All rights reserved. </small>
-    </footer>
-    @Scripts.Render("~/bundles/scripts/lib")
-    @Scripts.Render("~/bundles/scripts/fmm")
+@{
+    Layout = MVC.Shared.Views.BaseLayout;
+}
+@section scripts {
     @RenderSection("scripts", required: false)
-</body>
-</html>
+}
+@section styles {
+    @RenderSection("styles", required: false)
+}
+    
+<header>
+        
+</header>
+<article>
+    @RenderBody()
+</article>
+<footer class="text-center">
+    <small class="text-muted">&copy; @DateTime.Now.Year DanilF. All rights reserved. </small>
+</footer>

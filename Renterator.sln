@@ -9,9 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assemblies", "Assemblies", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A20B28E3-49CC-40FC-996B-9EAD29B5D39A}"
 	ProjectSection(SolutionItems) = preProject
+		.jshintignore = .jshintignore
+		.jshintrc = .jshintrc
 		Renterator.publickey = Renterator.publickey
 		Renterator.snk = Renterator.snk
 		WE-browsers.xml = WE-browsers.xml
+		WebEssentials-Settings.json = WebEssentials-Settings.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{CD1D0D4C-FF23-4726-B965-D0FD987E5FA3}"

@@ -128,12 +128,10 @@ namespace Renterator.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string ForgotPassword = "ForgotPassword";
-                public readonly string InvalidToken = "InvalidToken";
                 public readonly string Layout = "Layout";
                 public readonly string PasswordReset = "PasswordReset";
             }
             public readonly string ForgotPassword = "~/Views/PasswordRecovery/ForgotPassword.cshtml";
-            public readonly string InvalidToken = "~/Views/PasswordRecovery/InvalidToken.cshtml";
             public readonly string Layout = "~/Views/PasswordRecovery/Layout.cshtml";
             public readonly string PasswordReset = "~/Views/PasswordRecovery/PasswordReset.cshtml";
         }

@@ -7,24 +7,24 @@ namespace Renterator.Web.Controllers.Api
 {
     [AllowAnonymous]
     [RoutePrefix("api")]
-    public class AccountsController : ApiController
+    public class UserController : ApiController
     {
         private readonly IAuthenticationService authenticationService;
 
-        public AccountsController(IAuthenticationService authenticationService)
+        public UserController(IAuthenticationService authenticationService)
         {
             this.authenticationService = authenticationService;
         }
 
         [HttpPost]
-        [Route("accounts/login")]
+        [Route("users/login")]
         public Result Login(LoginInfo loginInfo)
         {
             return authenticationService.Login(loginInfo);
         }
 
         [HttpPost]
-        [Route("accounts/")]
+        [Route("user/")]
         public Result CreateAccount(UserAccountCreationInfo userInfo)
         {
             return authenticationService.CreateAccount(userInfo);

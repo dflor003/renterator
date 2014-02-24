@@ -35,19 +35,17 @@ namespace T4MVC
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string _Layout = "_Layout";
                 public readonly string _LoginPartial = "_LoginPartial";
+                public readonly string BaseLayout = "BaseLayout";
                 public readonly string Error = "Error";
                 public readonly string LoginForm = "LoginForm";
                 public readonly string MainLayout = "MainLayout";
-                public readonly string MarketingSiteLayout = "MarketingSiteLayout";
             }
-            public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
             public readonly string _LoginPartial = "~/Views/Shared/_LoginPartial.cshtml";
+            public readonly string BaseLayout = "~/Views/Shared/BaseLayout.cshtml";
             public readonly string Error = "~/Views/Shared/Error.cshtml";
             public readonly string LoginForm = "~/Views/Shared/LoginForm.cshtml";
             public readonly string MainLayout = "~/Views/Shared/MainLayout.cshtml";
-            public readonly string MarketingSiteLayout = "~/Views/Shared/MarketingSiteLayout.cshtml";
         }
     }
 

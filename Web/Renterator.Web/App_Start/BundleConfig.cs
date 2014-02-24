@@ -8,11 +8,8 @@ namespace Renterator.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             // Bootstrap
-            StyleBundle bootstrapBundle = new StyleBundle("~/bundles/css/bootstrap");
-            bootstrapBundle.Include("~/Content/less/lib/bootstrap.less");
-            bootstrapBundle.Transforms.Add(new LessTransform());
-            bootstrapBundle.Transforms.Add(new CssMinify());
-            bundles.Add(bootstrapBundle);
+            bundles.Add(new StyleBundle("~/bundles/css/bootstrap").Include(
+                "~/Content/less/lib/bootstrap/bootstrap.css"));
 
             // Other css libs
             bundles.Add(new StyleBundle("~/bundles/css/lib").Include(
@@ -21,11 +18,8 @@ namespace Renterator.Web
                 "~/Scripts/lib/select2/select2-bootstrap.css"));
 
             // Less files
-            var siteLess = new StyleBundle("~/bundles/css/site").Include(
-                    "~/Content/less/site.less");
-            siteLess.Transforms.Add(new LessTransform());
-            siteLess.Transforms.Add(new CssMinify());
-            bundles.Add(siteLess);
+            bundles.Add(new StyleBundle("~/bundles/css/site").Include(
+                "~/Content/less/src/site.css"));
 
             // Library js
             bundles.Add(new ScriptBundle("~/bundles/scripts/lib").Include(
@@ -44,8 +38,12 @@ namespace Renterator.Web
             // Other js
             bundles.Add(new ScriptBundle("~/bundles/scripts/src").Include(
                 // Common files
+                "~/Scripts/src/common/utils.js",
+                "~/Scripts/src/common/message-log.js",
+                "~/Scripts/src/common/service-helper.js",
 
                 // View models
+                "~/Scripts/src/viewmodels/login-form.js"
                 ));
         }
     }

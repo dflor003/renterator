@@ -82,10 +82,6 @@ namespace Links
         private const string URLPATH = "~/Scripts";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-        public static readonly string jquery_2_1_0_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.0.intellisense.min.js") ? Url("jquery-2.1.0.intellisense.min.js") : Url("jquery-2.1.0.intellisense.js");
-        public static readonly string jquery_2_1_0_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.0.min.js") ? Url("jquery-2.1.0.min.js") : Url("jquery-2.1.0.js");
-        public static readonly string jquery_2_1_0_min_js = Url("jquery-2.1.0.min.js");
-        public static readonly string jquery_2_1_0_min_map = Url("jquery-2.1.0.min.map");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class lib {
             private const string URLPATH = "~/Scripts/lib";
@@ -127,8 +123,9 @@ namespace Links
                 private const string URLPATH = "~/Scripts/lib/jquery";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                public static readonly string jquery_1_9_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.9.1.min.js") ? Url("jquery-1.9.1.min.js") : Url("jquery-1.9.1.js");
-                public static readonly string jquery_1_9_1_min_js = Url("jquery-1.9.1.min.js");
+                public static readonly string jquery_2_1_0_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.0.min.js") ? Url("jquery-2.1.0.min.js") : Url("jquery-2.1.0.js");
+                public static readonly string jquery_2_1_0_min_js = Url("jquery-2.1.0.min.js");
+                public static readonly string jquery_2_1_0_min_map = Url("jquery-2.1.0.min.map");
             }
         
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -141,24 +138,16 @@ namespace Links
             }
         
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public static class jqueryui {
-                private const string URLPATH = "~/Scripts/lib/jqueryui";
-                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                public static readonly string jquery_ui_1_10_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-ui-1.10.2.min.js") ? Url("jquery-ui-1.10.2.min.js") : Url("jquery-ui-1.10.2.js");
-                public static readonly string jquery_ui_1_10_2_min_js = Url("jquery-ui-1.10.2.min.js");
-            }
-        
-            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class knockout {
                 private const string URLPATH = "~/Scripts/lib/knockout";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                public static readonly string knockout_2_3_0_debug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout-2.3.0.debug.min.js") ? Url("knockout-2.3.0.debug.min.js") : Url("knockout-2.3.0.debug.js");
-                public static readonly string knockout_2_3_0_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout-2.3.0.min.js") ? Url("knockout-2.3.0.min.js") : Url("knockout-2.3.0.js");
+                public static readonly string knockout_3_0_0_debug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout-3.0.0.debug.min.js") ? Url("knockout-3.0.0.debug.min.js") : Url("knockout-3.0.0.debug.js");
+                public static readonly string knockout_3_0_0_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout-3.0.0.min.js") ? Url("knockout-3.0.0.min.js") : Url("knockout-3.0.0.js");
                 public static readonly string knockout_validation_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout.validation.min.js") ? Url("knockout.validation.min.js") : Url("knockout.validation.js");
                 public static readonly string knockout_validation_min_js = Url("knockout.validation.min.js");
                 public static readonly string koExternalTemplateEngine_all_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/koExternalTemplateEngine_all.min.js") ? Url("koExternalTemplateEngine_all.min.js") : Url("koExternalTemplateEngine_all.js");
+                public static readonly string koExternalTemplateEngine_all_min_js = Url("koExternalTemplateEngine_all.min.js");
             }
         
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -209,7 +198,13 @@ namespace Links
         
         }
     
-        public static readonly string modernizr_2_7_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.7.1.min.js") ? Url("modernizr-2.7.1.min.js") : Url("modernizr-2.7.1.js");
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class src {
+            private const string URLPATH = "~/Scripts/src";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        }
+    
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class templates {
             private const string URLPATH = "~/Scripts/templates";

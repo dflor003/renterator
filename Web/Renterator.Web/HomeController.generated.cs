@@ -61,6 +61,7 @@ namespace Renterator.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string Login = "Login";
             public readonly string AccountSetup = "AccountSetup";
         }
 
@@ -68,6 +69,7 @@ namespace Renterator.Web.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string Login = "Login";
             public const string AccountSetup = "AccountSetup";
         }
 
@@ -82,15 +84,13 @@ namespace Renterator.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string About = "About";
                 public readonly string AccountSetup = "AccountSetup";
-                public readonly string Contact = "Contact";
                 public readonly string Index = "Index";
+                public readonly string Login = "Login";
             }
-            public readonly string About = "~/Views/Home/About.cshtml";
             public readonly string AccountSetup = "~/Views/Home/AccountSetup.cshtml";
-            public readonly string Contact = "~/Views/Home/Contact.cshtml";
             public readonly string Index = "~/Views/Home/Index.cshtml";
+            public readonly string Login = "~/Views/Home/Login.cshtml";
         }
     }
 
@@ -107,6 +107,17 @@ namespace Renterator.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Login()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
+            LoginOverride(callInfo);
             return callInfo;
         }
 
