@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using Renterator.Common;
+using Renterator.Services.Interfaces;
 
 namespace Renterator.Services.AppServices.Common
 {

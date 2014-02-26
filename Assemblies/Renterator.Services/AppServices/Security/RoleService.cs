@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Security;
 using Renterator.Common;
 using Renterator.DataAccess.Infrastructure;
 using Renterator.DataAccess.Model;
+using Renterator.Services.Interfaces;
 
 namespace Renterator.Services.AppServices.Security
 {
-    public class RoleService : RoleProvider
+    public class RoleService : RoleProvider, IRoleService, IDisposable
     {
         private readonly IDataAccessor dataAccessor;
 
@@ -19,22 +18,24 @@ namespace Renterator.Services.AppServices.Security
             this.dataAccessor = Utils.NullArgumentCheck("dataAccessor", dataAccessor);
         }
 
-        public override bool IsUserInRole(string username, string roleName)
+        public override string ApplicationName { get; set; }
+
+        public override bool IsUserInRole(string email, string roleName)
         {
             return
                 (from user in dataAccessor.Users.Include(x => x.Roles)
                  where
-                     user.Username == username &&
+                     user.Email == email &&
                      user.Roles.Any(x => x.RoleName == roleName)
                  select 1).Any();
 
         }
 
-        public override string[] GetRolesForUser(string username)
+        public override string[] GetRolesForUser(string email)
         {
             IEnumerable<string> roles =
                 (from user in dataAccessor.Users.Include(x => x.Roles)
-                 where user.Username == username
+                 where user.Email == email
                  select user.Roles.Select(x => x.RoleName))
                 .FirstOrDefault();
 
@@ -79,7 +80,7 @@ namespace Renterator.Services.AppServices.Security
             return dataAccessor.Roles.Any(x => x.RoleName == roleName);
         }
 
-        public override void AddUsersToRoles(string[] usernames, string[] roleNames)
+        public override void AddUsersToRoles(string[] emails, string[] roleNames)
         {
             var roleUserMappings =
                 from role in dataAccessor.Roles
@@ -89,7 +90,7 @@ namespace Renterator.Services.AppServices.Security
                     Role = role,
                     Users =
                         from user in dataAccessor.Users
-                        where usernames.Contains(user.Username)
+                        where emails.Contains(user.Email)
                         select user
                 };
 
@@ -104,7 +105,7 @@ namespace Renterator.Services.AppServices.Security
             dataAccessor.SaveChanges();
         }
 
-        public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
+        public override void RemoveUsersFromRoles(string[] emails, string[] roleNames)
         {
             var roleUserMappings =
                 from role in dataAccessor.Roles
@@ -114,7 +115,7 @@ namespace Renterator.Services.AppServices.Security
                     Role = role,
                     Users =
                         from user in dataAccessor.Users
-                        where usernames.Contains(user.Username)
+                        where emails.Contains(user.Email)
                         select user
                 };
 
@@ -135,7 +136,7 @@ namespace Renterator.Services.AppServices.Security
                 (from role in dataAccessor.Roles
                  where role.RoleName == roleName
                  from user in role.Users
-                 select user.Username)
+                 select user.Email)
                 .ToArray();
         }
 
@@ -153,11 +154,14 @@ namespace Renterator.Services.AppServices.Security
                 (from role in dataAccessor.Roles
                  where role.RoleName == roleName
                  from user in role.Users
-                 where user.Username.Contains(usernameToMatch)
-                 select user.Username)
+                 where user.Email.Contains(usernameToMatch)
+                 select user.Email)
                 .ToArray();
         }
 
-        public override string ApplicationName { get; set; }
+        public void Dispose()
+        {
+            this.dataAccessor.Dispose();
+        }
     }
 }

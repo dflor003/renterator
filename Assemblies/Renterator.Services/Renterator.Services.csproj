@@ -64,15 +64,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppServices\Business\AccountBalanceService.cs" />
     <Compile Include="AppServices\Common\HttpRuntimeHelper.cs" />
-    <Compile Include="AppServices\Common\IHttpRuntimeHelper.cs" />
     <Compile Include="AppServices\Security\EmailService.cs" />
-    <Compile Include="AppServices\Security\IEmailService.cs" />
-    <Compile Include="AppServices\Security\IPasswordRecoveryService.cs" />
     <Compile Include="AppServices\Security\RoleService.cs" />
+    <Compile Include="Dto\AccountBalanceView.cs" />
     <Compile Include="Dto\PasswordResetInfo.cs" />
+    <Compile Include="Dto\UserContext.cs" />
     <Compile Include="Infrastructure\CacheKeys.cs" />
-    <Compile Include="AppServices\Security\IAuthenticationService.cs" />
     <Compile Include="AppServices\Security\AuthenticationService.cs" />
     <Compile Include="AppServices\Security\PasswordRecoveryService.cs" />
     <Compile Include="Dto\LoginInfo.cs" />
@@ -81,6 +80,13 @@
     <Compile Include="Infrastructure\Result.cs" />
     <Compile Include="Dto\UserAccountCreationInfo.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
+    <Compile Include="Interfaces\IAccountBalanceService.cs" />
+    <Compile Include="Interfaces\IAuthenticationService.cs" />
+    <Compile Include="Interfaces\IEmailService.cs" />
+    <Compile Include="Interfaces\IHttpRuntimeHelper.cs" />
+    <Compile Include="Interfaces\IPasswordRecoveryService.cs" />
+    <Compile Include="Interfaces\IRoleService.cs" />
+    <Compile Include="Interfaces\IUserSessionService.cs" />
     <Compile Include="MappingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicesNinjectModule.cs" />

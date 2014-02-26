@@ -16,7 +16,7 @@ namespace Renterator.DataAccess.Model
     {
         public Account()
         {
-            this.AccountItems = new HashSet<AccountItem>();
+            this.AccountEntries = new HashSet<AccountEntry>();
         }
     
         public int Id { get; set; }
@@ -24,7 +24,7 @@ namespace Renterator.DataAccess.Model
         public string Name { get; set; }
         public string Description { get; set; }
     
-        public virtual ICollection<AccountItem> AccountItems { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<AccountEntry> AccountEntries { get; set; }
     }
 }

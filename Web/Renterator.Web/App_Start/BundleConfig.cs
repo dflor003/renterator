@@ -33,7 +33,8 @@ namespace Renterator.Web
                 "~/Scripts/lib/linqjs/linq.js",
                 "~/Scripts/lib/ladda/spin.js",
                 "~/Scripts/lib/ladda/ladda.js",
-                "~/Scripts/lib/select2/select2.js"));
+                "~/Scripts/lib/select2/select2.js",
+                "~/Scripts/lib/moment/moment.js"));
 
             // Other js
             bundles.Add(new ScriptBundle("~/bundles/scripts/src").Include(
@@ -43,7 +44,8 @@ namespace Renterator.Web
                 "~/Scripts/src/common/service-helper.js",
 
                 // View models
-                "~/Scripts/src/viewmodels/login-form.js"
+                "~/Scripts/src/viewmodels/login-form.js",
+                "~/Scripts/src/viewmodels/current-balance.js"
                 ));
         }
     }

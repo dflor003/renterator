@@ -73,6 +73,9 @@
     <Reference Include="Ninject.Web.Common">
       <HintPath>..\..\packages\Ninject.Web.Common.3.0.0.7\lib\net45-full\Ninject.Web.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\..\packages\Ninject.MVC3.3.0.0.6\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -163,7 +166,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BalancesController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\Api\UserController.cs" />
+    <Compile Include="Controllers\BalancesController.cs" />
     <Compile Include="Helpers\LessTransform.cs" />
     <Compile Include="Helpers\HandleAjaxErrorAttribute.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -200,9 +207,14 @@
   <ItemGroup>
     <Content Include="Content\css\lib\ladda\ladda.css" />
     <Content Include="Content\css\lib\ladda\ladda.min.css" />
+    <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\less\lib\bootstrap\bootstrap.css">
       <DependentUpon>bootstrap.less</DependentUpon>
     </Content>
+    <Content Include="Content\less\lib\bootswatch\variables.css">
+      <DependentUpon>variables.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\lib\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\less\src\login.css">
       <DependentUpon>login.less</DependentUpon>
     </Content>
@@ -296,11 +308,16 @@
     <Content Include="Content\less\lib\bootswatch\bootswatch.less" />
     <Content Include="Content\less\lib\bootswatch\variables.less" />
     <Content Include="Content\less\src\mixins.less" />
+    <Content Include="Content\less\lib\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\less\lib\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\less\lib\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\lib\linqjs\linq-vsdoc.js" />
     <Content Include="Scripts\lib\linqjs\linq.jquery.js" />
     <Content Include="Scripts\lib\linqjs\linq.js" />
     <Content Include="Scripts\lib\linqjs\linq.min.js" />
     <Content Include="Scripts\lib\modernizr\modernizr-2.6.2.js" />
+    <Content Include="Scripts\lib\moment\moment.js" />
+    <Content Include="Scripts\lib\moment\moment.min.js" />
     <Content Include="Scripts\lib\select2\select2-bootstrap.css" />
     <Content Include="Scripts\lib\select2\select2-spinner.gif" />
     <Content Include="Scripts\lib\select2\select2.css" />
@@ -311,6 +328,7 @@
     <Content Include="Scripts\src\common\message-log.js" />
     <Content Include="Scripts\src\common\service-helper.js" />
     <Content Include="Scripts\src\common\utils.js" />
+    <Content Include="Scripts\src\viewmodels\current-balance.js" />
     <Content Include="Scripts\src\viewmodels\login-form.js" />
     <Content Include="Scripts\templates\MessageLog.tmpl.html" />
     <Content Include="Scripts\tests\TestSetup.js" />
@@ -332,7 +350,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\UserIndex.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\AccountSetup.cshtml" />
     <Content Include="Views\Jasmine\SpecRunner.cshtml" />
@@ -343,6 +361,8 @@
     <Content Include="Views\Shared\MainLayout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\BaseLayout.cshtml" />
+    <Content Include="Views\Home\AdminIndex.cshtml" />
+    <Content Include="Views\Balances\Current.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -27,7 +27,6 @@ namespace Renterator.DataAccess.Model
         public bool IsActive { get; set; }
         public bool IsAdmin { get; set; }
         public System.DateTime LastLoginDate { get; set; }
-        public string Username { get; set; }
         public string Email { get; set; }
     
         public virtual ICollection<Role> Roles { get; set; }

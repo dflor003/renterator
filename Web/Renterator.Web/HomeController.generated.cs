@@ -62,6 +62,7 @@ namespace Renterator.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Login = "Login";
+            public readonly string SignOut = "SignOut";
             public readonly string AccountSetup = "AccountSetup";
         }
 
@@ -70,6 +71,7 @@ namespace Renterator.Web.Controllers
         {
             public const string Index = "Index";
             public const string Login = "Login";
+            public const string SignOut = "SignOut";
             public const string AccountSetup = "AccountSetup";
         }
 
@@ -85,12 +87,14 @@ namespace Renterator.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string AccountSetup = "AccountSetup";
-                public readonly string Index = "Index";
+                public readonly string AdminIndex = "AdminIndex";
                 public readonly string Login = "Login";
+                public readonly string UserIndex = "UserIndex";
             }
             public readonly string AccountSetup = "~/Views/Home/AccountSetup.cshtml";
-            public readonly string Index = "~/Views/Home/Index.cshtml";
+            public readonly string AdminIndex = "~/Views/Home/AdminIndex.cshtml";
             public readonly string Login = "~/Views/Home/Login.cshtml";
+            public readonly string UserIndex = "~/Views/Home/UserIndex.cshtml";
         }
     }
 
@@ -118,6 +122,17 @@ namespace Renterator.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
             LoginOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SignOutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SignOut()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SignOut);
+            SignOutOverride(callInfo);
             return callInfo;
         }
 

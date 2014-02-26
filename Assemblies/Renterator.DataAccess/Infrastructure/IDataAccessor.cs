@@ -12,6 +12,10 @@ namespace Renterator.DataAccess.Infrastructure
 
         IQueryable<Role> Roles { get; }
 
+        IQueryable<Account> Accounts { get; }
+
+        IQueryable<AccountEntry> AccountEntries { get; } 
+
         int SaveChanges();
 
         IEnumerable<TEntity> Find<TEntity>(Expression<Func<TEntity, bool>> predicate)

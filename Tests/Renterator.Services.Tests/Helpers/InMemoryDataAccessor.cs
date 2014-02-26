@@ -38,6 +38,16 @@ namespace Renterator.Services.Tests.Helpers
             get { return GetAll<Role>(); }
         }
 
+        public IQueryable<Account> Accounts
+        {
+            get { return GetAll<Account>(); }
+        }
+
+        public IQueryable<AccountEntry> AccountEntries
+        {
+            get { return GetAll<AccountEntry>(); }
+        }
+
         public HashSet<object> Committed { get; private set; }
 
         public List<Action> PendingActions { get; private set; }

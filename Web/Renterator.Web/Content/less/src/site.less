@@ -16,3 +16,28 @@
         }
     }
 }
+
+/* Layout */
+@footer-size: 30px;
+@header-size: 50px;
+
+header {
+    height: @header-size;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: @footer-size;
+    background-color: #f5f5f5;
+}
+
+.main {
+    padding-top: @footer-size;
+}
+
+body {
+    margin-bottom: @footer-size;
+    margin-top: @header-size;
+}

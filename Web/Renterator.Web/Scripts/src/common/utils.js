@@ -116,6 +116,13 @@
             };
         },
 
+        formatAsCurrency: function (numericValue) {
+            var isNegative = numericValue < 0,
+                stringValue = '$' + Math.abs(numericValue).toFixed(2);
+
+            return isNegative ? '(' + stringValue + ')' : stringValue;
+        },
+
         queryString: new QueryStringDictionary()
     };
 

@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Renterator.Services.AppServices.Common;
 using Renterator.Services.AppServices.Security;
 using Renterator.Services.Infrastructure;
+using Renterator.Services.Interfaces;
 using Renterator.Services.Tests.Helpers;
 
 namespace Renterator.Services.Tests.Unit.Services.Security

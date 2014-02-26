@@ -13,7 +13,7 @@ namespace Renterator.DataAccess.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    internal partial class RenteratorDataAccessor : DbContext
+    public partial class RenteratorDataAccessor : DbContext
     {
         public RenteratorDataAccessor()
             : base("name=RenteratorDataAccessor")
@@ -27,8 +27,8 @@ namespace Renterator.DataAccess.Model
     
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<AccountItem> AccountItems { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Bill> Bills { get; set; }
+        public DbSet<AccountEntry> AccountEntries { get; set; }
     }
 }

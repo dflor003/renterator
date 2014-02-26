@@ -1,4 +1,5 @@
 ﻿using System.Net.Mail;
+using Renterator.Services.Interfaces;
 
 namespace Renterator.Services.AppServices.Security
 {

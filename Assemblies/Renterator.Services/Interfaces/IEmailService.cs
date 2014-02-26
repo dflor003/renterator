@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 
-namespace Renterator.Services.AppServices.Security
+namespace Renterator.Services.Interfaces
 {
     public interface IEmailService
     {

@@ -65,7 +65,7 @@
     <Compile Include="Model\Account.cs">
       <DependentUpon>Renterator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\AccountItem.cs">
+    <Compile Include="Model\AccountEntry.cs">
       <DependentUpon>Renterator.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Bill.cs">

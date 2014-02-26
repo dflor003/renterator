@@ -21,7 +21,7 @@
         window.GlobalVars = @(Html.Raw(JsonConvert.SerializeObject(globalVars)));
     </script>
 </head>
-<body class="container-fluid">
+<body>
     @RenderBody()
     
     @Scripts.Render("~/bundles/scripts/lib")

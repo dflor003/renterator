@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Renterator.Web.Controllers
 {
@@ -7,7 +8,7 @@ namespace Renterator.Web.Controllers
         [HttpGet]
         public virtual ActionResult Index()
         {
-            return View(Views.Index);
+            return RedirectToAction("Current", "Balances");
         }
 
         [HttpGet]
@@ -15,6 +16,13 @@ namespace Renterator.Web.Controllers
         public virtual ActionResult Login()
         {
             return View(Views.Login);
+        }
+
+        [HttpGet]
+        public virtual ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction(MVC.Home.Login());
         }
 
         [HttpGet]

@@ -9,7 +9,7 @@ using Renterator.DataAccess.Infrastructure;
 
 namespace Renterator.DataAccess.Model
 {
-    internal partial class RenteratorDataAccessor : IDataAccessor
+    public partial class RenteratorDataAccessor : IDataAccessor
     {
         #region Constructors
 
@@ -31,6 +31,16 @@ namespace Renterator.DataAccess.Model
         {
             get { return Roles; }
         }
+
+        IQueryable<Account> IDataAccessor.Accounts
+        {
+            get { return Accounts; }
+        }
+
+        IQueryable<AccountEntry> IDataAccessor.AccountEntries
+        {
+            get { return AccountEntries; }
+        } 
 
         public IEnumerable<TEntity> Find<TEntity>(Expression<Func<TEntity, bool>> predicate)
             where TEntity : class

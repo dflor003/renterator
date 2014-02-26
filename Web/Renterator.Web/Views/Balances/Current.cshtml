@@ -1,0 +1,64 @@
+﻿@using Newtonsoft.Json
+@model Renterator.Services.Dto.AccountBalanceView
+@{
+    ViewBag.Title = "Balances - List";
+}
+@section scripts{
+    <script id="data" type="application/json">
+        @Html.Raw(JsonConvert.SerializeObject(Model, Formatting.Indented))
+    </script>
+    
+    <script type="text/javascript">
+        $(function () {
+            var rawData = $('#data').html(),
+                data = JSON.parse(rawData),
+                viewModel = new renterator.viewmodels.CurrentBalanceView(data),
+                $view = $('#balance-view');
+
+            ko.applyBindings(viewModel, $view[0]);
+        });
+    </script>
+}
+
+<article id="balance-view">
+    <h1>
+        Account
+        <small>as of @DateTime.Today.ToShortDateString()</small>
+    </h1>
+    
+    <h2>
+        Balance: 
+        <span data-bind="text: formattedBalance, css: { 'text-success': balance() > 0, 'text-danger': balance() < 0 }">
+        </span>
+    </h2>
+    
+    <section class="panel panel-primary">
+        <header class="panel-heading">
+            <h4 class="">
+                <strong>Last 10 Entries</strong>
+            </h4>
+        </header>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="col-xs-2">
+                        Date
+                        <span class="glyphicon glyphicon-arrow-up"></span>
+                    </th>
+                    <th class="col-xs-6">Description</th>
+                    <th class="col-xs-2">Amount</th>
+                    <th class="col-xs-2">Running Total</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: mostRecentEntries">
+                <tr data-bind="">
+                    <td data-bind="text: date.format('MM/DD/YYYY')"></td>
+                    <td data-bind="text: description"></td>
+                    <td data-bind="text: $parent.formatCurrency(amount), css: { 'text-success': amount > 0, 'text-danger': amount < 0 }"></td>
+                    <td data-bind="text: $parent.formatCurrency(runningTotal), css: { 'text-success': amount > 0, 'text-danger': amount < 0 }"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</article>
+

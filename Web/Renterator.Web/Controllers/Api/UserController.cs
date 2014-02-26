@@ -2,6 +2,7 @@
 using Renterator.Services.AppServices.Security;
 using Renterator.Services.Dto;
 using Renterator.Services.Infrastructure;
+using Renterator.Services.Interfaces;
 
 namespace Renterator.Web.Controllers.Api
 {
@@ -24,7 +25,7 @@ namespace Renterator.Web.Controllers.Api
         }
 
         [HttpPost]
-        [Route("user/")]
+        [Route("users/")]
         public Result CreateAccount(UserAccountCreationInfo userInfo)
         {
             return authenticationService.CreateAccount(userInfo);

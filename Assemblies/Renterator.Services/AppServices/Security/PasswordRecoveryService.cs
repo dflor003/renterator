@@ -9,6 +9,7 @@ using Renterator.DataAccess.Model;
 using Renterator.Services.AppServices.Common;
 using Renterator.Services.Dto;
 using Renterator.Services.Infrastructure;
+using Renterator.Services.Interfaces;
 using Renterator.Services.Templates;
 
 namespace Renterator.Services.AppServices.Security

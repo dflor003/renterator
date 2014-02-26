@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Transactions;
 using System.Web;
 using System.Web.Security;
 using AutoMapper;
 using Renterator.Common;
+using Renterator.Common.Caching;
 using Renterator.DataAccess.Infrastructure;
 using Renterator.DataAccess.Model;
 using Renterator.Services.Dto;
 using Renterator.Services.Infrastructure;
+using Renterator.Services.Interfaces;
 using ValidationException = Renterator.Services.Infrastructure.ValidationException;
 
 namespace Renterator.Services.AppServices.Security
@@ -25,22 +28,23 @@ namespace Renterator.Services.AppServices.Security
         private const string MsgInvalidUsernameOrPwd = @"Invalid email or password.";
         private const string MsgAccountWithEmailExists = @"An account with the given email already exists.";
 
+        private readonly ICache cache;
         private readonly IDataAccessor dataAccessor;
         private readonly HttpContextBase context;
         #endregion
 
         #region Constructors
 
-        public AuthenticationService(IDataAccessor dataAccessor)
-            : this(dataAccessor, new HttpContextWrapper(HttpContext.Current), new Random())
+        public AuthenticationService(IDataAccessor dataAccessor, ICache cache)
+            : this(dataAccessor, cache, new HttpContextWrapper(HttpContext.Current))
         {
         }
 
-        internal AuthenticationService(IDataAccessor dataAccessor, HttpContextBase context, Random randomGenerator)
+        internal AuthenticationService(IDataAccessor dataAccessor, ICache cache, HttpContextBase context)
         {
+            this.cache = Utils.NullArgumentCheck("cache", cache);
             this.dataAccessor = Utils.NullArgumentCheck("dataAccessor", dataAccessor);
             this.context = Utils.NullArgumentCheck("context", context);
-            Utils.NullArgumentCheck("randomGenerator", randomGenerator);
         }
 
         #endregion
@@ -90,23 +94,25 @@ namespace Renterator.Services.AppServices.Security
             }
 
             // Get matching pwd and hash from db
-            var dbInfo =
-                (from user in dataAccessor.Users
+            User userInfo =
+                (from user in dataAccessor.Users.Include(u => u.Roles)
                  where user.Email == loginInfo.Email
-                 select new
-                 {
-                     user.Email,
-                     user.PasswordHash
-                 }).FirstOrDefault();
+                 select user).FirstOrDefault();
 
             // Check match
-            if (dbInfo == null || !PasswordHashHelper.ValidatePassword(loginInfo.Password, dbInfo.PasswordHash))
+            if (userInfo == null || !PasswordHashHelper.ValidatePassword(loginInfo.Password, userInfo.PasswordHash))
             {
                 throw new ValidationException(MsgInvalidUsernameOrPwd);
             }
 
             // Login succeeded, set forms cookie
-            SetFormsAuthenticationCookie(dbInfo.Email);
+            string token = SetAndReturnFormsAuthenticationCookie(userInfo.Email);
+            
+            // Set up cached user context
+            UserContext userContext = new UserContext(token, userInfo);
+            CacheItemPolicy cacheItemPolicy = new CacheItemPolicy { SlidingExpiration = TimeSpan.FromHours(1) };
+            cache.Set(token, cacheItemPolicy, userContext);
+
             return new Result();
         }
 
@@ -119,7 +125,7 @@ namespace Renterator.Services.AppServices.Security
 
         #region NonPublic Methods
 
-        private void SetFormsAuthenticationCookie(string userName)
+        private string SetAndReturnFormsAuthenticationCookie(string userName)
         {
             // Token values
             const int AspNetVersion = 4;
@@ -139,6 +145,8 @@ namespace Renterator.Services.AppServices.Security
             // Add cookie to response
             string encryptedTicket = FormsAuthentication.Encrypt(ticket);
             context.Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket));
+
+            return encryptedTicket;
         }
 
         #endregion

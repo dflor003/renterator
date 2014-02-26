@@ -1,4 +1,4 @@
-﻿namespace Renterator.Services.AppServices.Common
+﻿namespace Renterator.Services.Interfaces
 {
     public interface IHttpRuntimeHelper
     {

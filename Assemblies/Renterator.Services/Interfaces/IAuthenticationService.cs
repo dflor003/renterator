@@ -3,7 +3,7 @@ using Renterator.DataAccess.Model;
 using Renterator.Services.Dto;
 using Renterator.Services.Infrastructure;
 
-namespace Renterator.Services.AppServices.Security
+namespace Renterator.Services.Interfaces
 {
     public interface IAuthenticationService : IDisposable
     {
