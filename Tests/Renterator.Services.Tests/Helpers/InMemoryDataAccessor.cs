@@ -48,6 +48,16 @@ namespace Renterator.Services.Tests.Helpers
             get { return GetAll<AccountEntry>(); }
         }
 
+        public IQueryable<Bill> Bills
+        {
+            get { return GetAll<Bill>(); }
+        }
+
+        public IQueryable<BillType> BillTypes
+        {
+            get { return GetAll<BillType>(); }
+        }
+
         public HashSet<object> Committed { get; private set; }
 
         public List<Action> PendingActions { get; private set; }

@@ -12,6 +12,9 @@
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
+.datepicker {
+  z-index: 2000;
+}
 /* Layout */
 header {
   height: 50px;

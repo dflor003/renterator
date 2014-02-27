@@ -31,7 +31,9 @@ namespace Renterator.Web.Controllers
         [HttpGet]
         public virtual ActionResult Bills()
         {
-            return null;
+            BillsView model = billManagementService.GetBillsView();
+
+            return View(model);
         }
     }
 }

@@ -14,7 +14,11 @@ namespace Renterator.DataAccess.Infrastructure
 
         IQueryable<Account> Accounts { get; }
 
-        IQueryable<AccountEntry> AccountEntries { get; } 
+        IQueryable<AccountEntry> AccountEntries { get; }
+
+        IQueryable<Bill> Bills { get; }
+
+        IQueryable<BillType> BillTypes { get; } 
 
         int SaveChanges();
 

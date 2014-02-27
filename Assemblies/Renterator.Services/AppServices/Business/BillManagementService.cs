@@ -46,6 +46,35 @@ namespace Renterator.Services.AppServices.Business
             return result ?? new AccountBalanceView();
         }
 
+        public BillsView GetBillsView()
+        {
+            BillsView result =
+                new BillsView
+                {
+                    BillTypes =
+                        (from type in dataAccessor.BillTypes
+                         orderby type.Id
+                         select new BillTypeDto
+                         {
+                             Id = type.Id,
+                             Name = type.Name
+                         }).ToArray(),
+                    Bills =
+                        (from bill in dataAccessor.Bills
+                         orderby bill.Date descending
+                         select new BillDto
+                         {
+                             Id = bill.Id,
+                             Date = bill.Date,
+                             Description = bill.Description,
+                             Amount = bill.Amount,
+                             BillTypeId = bill.BillTypeId
+                         }).ToArray()
+                };
+
+            return result;
+        }
+
         public void Dispose()
         {
             this.dataAccessor.Dispose();

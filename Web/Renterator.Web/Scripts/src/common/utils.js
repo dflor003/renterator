@@ -123,7 +123,11 @@
             return isNegative ? '(' + stringValue + ')' : stringValue;
         },
 
-        queryString: new QueryStringDictionary()
+        queryString: new QueryStringDictionary(),
+
+        showDialog: function (viewModel, template, onSave) {
+            
+        }
     };
 
     // Exports

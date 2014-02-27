@@ -40,7 +40,17 @@ namespace Renterator.DataAccess.Model
         IQueryable<AccountEntry> IDataAccessor.AccountEntries
         {
             get { return AccountEntries; }
-        } 
+        }
+
+        IQueryable<Bill> IDataAccessor.Bills
+        {
+            get { return Bills; }
+        }
+
+        IQueryable<BillType> IDataAccessor.BillTypes
+        {
+            get { return BillTypes; }
+        }
 
         public IEnumerable<TEntity> Find<TEntity>(Expression<Func<TEntity, bool>> predicate)
             where TEntity : class

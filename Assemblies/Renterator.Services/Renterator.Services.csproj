@@ -69,6 +69,7 @@
     <Compile Include="AppServices\Security\EmailService.cs" />
     <Compile Include="AppServices\Security\RoleService.cs" />
     <Compile Include="Dto\AccountBalanceView.cs" />
+    <Compile Include="Dto\BillsView.cs" />
     <Compile Include="Dto\PasswordResetInfo.cs" />
     <Compile Include="Dto\UserContext.cs" />
     <Compile Include="Infrastructure\CacheKeys.cs" />

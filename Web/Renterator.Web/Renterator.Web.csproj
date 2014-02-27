@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -20,6 +21,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>0.9</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -207,6 +209,7 @@
   <ItemGroup>
     <Content Include="Content\css\lib\ladda\ladda.css" />
     <Content Include="Content\css\lib\ladda\ladda.min.css" />
+    <Content Include="Content\css\lib\moment-datepicker\datepicker.css" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\less\lib\bootstrap\bootstrap.css">
       <DependentUpon>bootstrap.less</DependentUpon>
@@ -316,6 +319,9 @@
     <Content Include="Scripts\lib\linqjs\linq.js" />
     <Content Include="Scripts\lib\linqjs\linq.min.js" />
     <Content Include="Scripts\lib\modernizr\modernizr-2.6.2.js" />
+    <Content Include="Scripts\lib\moment-datepicker\moment-datepicker-ko.js" />
+    <Content Include="Scripts\lib\moment-datepicker\moment-datepicker.js" />
+    <Content Include="Scripts\lib\moment-datepicker\moment-datepicker.min.js" />
     <Content Include="Scripts\lib\moment\moment.js" />
     <Content Include="Scripts\lib\moment\moment.min.js" />
     <Content Include="Scripts\lib\select2\select2-bootstrap.css" />
@@ -325,9 +331,12 @@
     <Content Include="Scripts\lib\select2\select2.min.js" />
     <Content Include="Scripts\lib\select2\select2.png" />
     <Content Include="Scripts\lib\select2\select2x2.png" />
+    <Content Include="Scripts\src\common\binding-handlers.js" />
+    <Content Include="Scripts\src\common\dialog-helper.js" />
     <Content Include="Scripts\src\common\message-log.js" />
     <Content Include="Scripts\src\common\service-helper.js" />
     <Content Include="Scripts\src\common\utils.js" />
+    <Content Include="Scripts\src\viewmodels\bills-view.js" />
     <Content Include="Scripts\src\viewmodels\current-balance.js" />
     <Content Include="Scripts\src\viewmodels\login-form.js" />
     <Content Include="Scripts\templates\MessageLog.tmpl.html" />
@@ -363,6 +372,7 @@
     <Content Include="Views\Shared\BaseLayout.cshtml" />
     <Content Include="Views\Home\AdminIndex.cshtml" />
     <Content Include="Views\Balances\Current.cshtml" />
+    <Content Include="Views\Balances\Bills.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -389,11 +399,18 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\knockout.validation\knockout.validation.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

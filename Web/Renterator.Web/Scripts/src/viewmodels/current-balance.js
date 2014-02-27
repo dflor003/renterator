@@ -1,16 +1,14 @@
 ﻿(function (global, ko) {
     // Imports
     var ServiceHelper = global.renterator.common.ServiceHelper;
-    var MessageLog = global.renterator.common.MessageLog;
 
     // Define the CurrentBalanceView view model
     function CurrentBalanceView(data) {
         // Alias this to self
         var self = this;
 
-        // Helpers for messages & services
+        // Helpers
         self.serviceHelper = new ServiceHelper();
-        self.log = new MessageLog();
 
         // Knockout properties
         self.balance = ko.observable(data.Balance || 0.0);

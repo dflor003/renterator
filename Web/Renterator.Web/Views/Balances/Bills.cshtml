@@ -1,0 +1,96 @@
+﻿@using Newtonsoft.Json
+@model Renterator.Services.Dto.BillsView
+@{
+    ViewBag.Title = "Bills Management";
+}
+@section scripts{
+    <script id="data" type="application/json">
+        @Html.Raw(JsonConvert.SerializeObject(Model, Formatting.Indented))
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            var rawData = $('#data').html(),
+                data = JSON.parse(rawData),
+                viewModel = new renterator.viewmodels.BillsView(data),
+                $view = $('#bills-view');
+
+            ko.applyBindings(viewModel, $view[0]);
+        });
+    </script>
+    
+    <script id="new-bill-dialog" type="text/html">
+        <form class="modal fade" data-bind="submit: dialog.save">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" data-bind="text: dialog.title"></h4>
+                    </div>
+                    <div class="modal-body" data-bind="with: bill">
+                        <div class="form-group">
+                            <label class="control-label" for="bill-date">Date</label>
+                            <input id="bill-date" type="text" class="form-control" data-bind="datepicker: date, datepickerOptions: { format: 'MM/DD/YYYY' }"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="bill-description">Description</label>
+                            <input id="bill-description" type="text" class="form-control" data-bind="value: description" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="bill-amount">Amount</label>
+                            <input id="bill-amount" type="text" class="form-control" data-bind="value: amount" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="bill-category">Category</label>
+                            <select id="bill-category" class="form-control input-lg" data-bind="value: billTypeId, options: $parent.billTypes, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Category', combo: true"></select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </script>
+}
+
+<section id="bills-view">
+    <h1>
+        Bills
+    </h1>
+    
+    <section class="panel panel-primary">
+        <header class="panel-heading">
+            <h4 class="pull-left">
+                <strong>Bills</strong>
+            </h4>
+            
+            <button class="btn btn-primary btn-primary btn-sm pull-right" type="button" data-bind="click: newBillDialog">
+                <span class="glyphicon glyphicon-plus"></span>
+                New Bill
+            </button>
+        </header>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="col-xs-2">
+                        Date
+                        <span class="glyphicon glyphicon-arrow-up"></span>
+                    </th>
+                    <th class="col-xs-6">Description</th>
+                    <th class="col-xs-2">Amount</th>
+                    <th class="col-xs-2">Type</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: bills">
+                <tr>
+                    <td data-bind="text: date().format('MM/DD/YYYY')"></td>
+                    <td data-bind="text: description"></td>
+                    <td data-bind="text: $parent.formatCurrency(amount())"></td>
+                    <td data-bind="text: $parent.billTypeMap[billTypeId()]"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>

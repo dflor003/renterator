@@ -91,5 +91,20 @@
     "OutputDirectory": null,
     "ShowPreviewPane": true,
     "StrictBoldItalic": false
+  },
+  "Sass": {
+    "CompileOnBuild": true,
+    "CompileOnSave": true,
+    "GenerateSourceMaps": true,
+    "MinifyInPlace": false,
+    "OutputDirectory": null,
+    "ShowPreviewPane": true
+  },
+  "TypeScript": {
+    "BraceCompletion": true,
+    "LintOnBuild": false,
+    "LintOnSave": true,
+    "LintResultLocation": "Message",
+    "ShowPreviewPane": false
   }
 }
