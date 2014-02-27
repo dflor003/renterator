@@ -1,5 +1,4 @@
 ﻿using System.Web.Http;
-using Renterator.Services.AppServices.Security;
 using Renterator.Services.Dto;
 using Renterator.Services.Infrastructure;
 using Renterator.Services.Interfaces;

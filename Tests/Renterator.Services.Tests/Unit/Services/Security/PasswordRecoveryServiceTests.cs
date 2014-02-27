@@ -2,7 +2,6 @@
 using System.Text.RegularExpressions;
 using Moq;
 using NUnit.Framework;
-using Renterator.Services.AppServices.Common;
 using Renterator.Services.AppServices.Security;
 using Renterator.Services.Infrastructure;
 using Renterator.Services.Interfaces;

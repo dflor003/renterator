@@ -3,7 +3,7 @@ using Renterator.Services.Dto;
 
 namespace Renterator.Services.Interfaces
 {
-    public interface IAccountBalanceService : IDisposable
+    public interface IBillManagementService : IDisposable
     {
         AccountBalanceView GetAccountBalanceView(int userId);
     }

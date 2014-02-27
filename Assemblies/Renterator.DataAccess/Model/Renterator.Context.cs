@@ -9,7 +9,6 @@
 
 namespace Renterator.DataAccess.Model
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     

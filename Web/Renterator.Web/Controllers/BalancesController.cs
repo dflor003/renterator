@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Ninject;
 using Renterator.Services.Dto;
 using Renterator.Services.Interfaces;
@@ -8,12 +7,12 @@ namespace Renterator.Web.Controllers
 {
     public partial class BalancesController : Controller
     {
-        private readonly IAccountBalanceService accountBalanceService;
+        private readonly IBillManagementService billManagementService;
 
         [Inject]
-        public BalancesController(IAccountBalanceService accountBalanceService)
+        public BalancesController(IBillManagementService billManagementService)
         {
-            this.accountBalanceService = accountBalanceService;
+            this.billManagementService = billManagementService;
         }
 
         public UserContext UserContext
@@ -24,7 +23,7 @@ namespace Renterator.Web.Controllers
         [HttpGet]
         public virtual ActionResult Current()
         {
-            AccountBalanceView model = accountBalanceService.GetAccountBalanceView(UserContext.UserId);
+            AccountBalanceView model = billManagementService.GetAccountBalanceView(UserContext.UserId);
 
             return View(model);
         }

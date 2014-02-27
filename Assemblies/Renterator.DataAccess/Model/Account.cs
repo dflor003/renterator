@@ -9,7 +9,6 @@
 
 namespace Renterator.DataAccess.Model
 {
-    using System;
     using System.Collections.Generic;
     
     public partial class Account

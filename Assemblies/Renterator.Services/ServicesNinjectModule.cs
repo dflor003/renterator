@@ -18,7 +18,7 @@ namespace Renterator.Services
             Bind<ICache>().To<Cache>().InSingletonScope();
             Bind<IRoleService>().To<RoleService>();
             Bind<IUserSessionService>().To<UserSessionService>();
-            Bind<IAccountBalanceService>().To<AccountBalanceService>();
+            Bind<IBillManagementService>().To<BillManagementService>();
         }
     }
 }

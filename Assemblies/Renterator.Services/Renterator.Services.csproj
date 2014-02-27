@@ -64,7 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppServices\Business\AccountBalanceService.cs" />
+    <Compile Include="AppServices\Business\BillManagementService.cs" />
     <Compile Include="AppServices\Common\HttpRuntimeHelper.cs" />
     <Compile Include="AppServices\Security\EmailService.cs" />
     <Compile Include="AppServices\Security\RoleService.cs" />
@@ -80,7 +80,7 @@
     <Compile Include="Infrastructure\Result.cs" />
     <Compile Include="Dto\UserAccountCreationInfo.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
-    <Compile Include="Interfaces\IAccountBalanceService.cs" />
+    <Compile Include="Interfaces\IBillManagementService.cs" />
     <Compile Include="Interfaces\IAuthenticationService.cs" />
     <Compile Include="Interfaces\IEmailService.cs" />
     <Compile Include="Interfaces\IHttpRuntimeHelper.cs" />

@@ -1,16 +1,15 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Renterator.DataAccess.Infrastructure;
 using Renterator.Services.Dto;
 using Renterator.Services.Interfaces;
 
 namespace Renterator.Services.AppServices.Business
 {
-    internal class AccountBalanceService : IAccountBalanceService
+    internal class BillManagementService : IBillManagementService
     {
         private readonly IDataAccessor dataAccessor;
 
-        public AccountBalanceService(IDataAccessor dataAccessor)
+        public BillManagementService(IDataAccessor dataAccessor)
         {
             this.dataAccessor = dataAccessor;
         }

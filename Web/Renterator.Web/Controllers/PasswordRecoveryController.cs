@@ -1,11 +1,8 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Renterator.Common;
-using Renterator.Services.AppServices.Security;
 using Renterator.Services.Dto;
 using Renterator.Services.Infrastructure;
 using Renterator.Services.Interfaces;
-using Renterator.Web.Helpers;
 
 namespace Renterator.Web.Controllers
 {

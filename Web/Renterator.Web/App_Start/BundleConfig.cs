@@ -1,5 +1,4 @@
 ﻿using System.Web.Optimization;
-using Renterator.Web.Helpers;
 
 namespace Renterator.Web
 {
