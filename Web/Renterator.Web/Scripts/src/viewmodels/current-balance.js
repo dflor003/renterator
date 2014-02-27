@@ -27,10 +27,10 @@
         var items = ko.utils.arrayMap(data.MostRecentEntries || [], function (item) {
             return new AccountEntry(item);
         });
-        self.mostRecentEntries = ko.observableArray(items);
+        self.entries = ko.observableArray(items);
 
         // Calculate running total for view models
-        self.mostRecentEntries().forEach(function (item, index) {
+        self.entries().forEach(function (item, index) {
             item.runningTotal = self.runningTotalForIndex(index);
         });
     }
@@ -46,7 +46,7 @@
         runningTotalForIndex: function (index) {
             var self = this,
                 base = self.runningTotalBase(),
-                entries = self.mostRecentEntries();
+                entries = self.entries();
 
             return base + Enumerable
                 .from(entries)

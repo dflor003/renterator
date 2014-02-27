@@ -58,12 +58,14 @@ namespace Renterator.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Current = "Current";
+            public readonly string Bills = "Bills";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Current = "Current";
+            public const string Bills = "Bills";
         }
 
 
@@ -96,6 +98,17 @@ namespace Renterator.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Current);
             CurrentOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void BillsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Bills()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Bills);
+            BillsOverride(callInfo);
             return callInfo;
         }
 

@@ -182,6 +182,15 @@ namespace Links
             }
         
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class moment {
+                private const string URLPATH = "~/Scripts/lib/moment";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string moment_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/moment.min.js") ? Url("moment.min.js") : Url("moment.js");
+                public static readonly string moment_min_js = Url("moment.min.js");
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class select2 {
                 private const string URLPATH = "~/Scripts/lib/select2";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
@@ -219,6 +228,7 @@ namespace Links
                 private const string URLPATH = "~/Scripts/src/viewmodels";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string current_balance_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/current-balance.min.js") ? Url("current-balance.min.js") : Url("current-balance.js");
                 public static readonly string login_form_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/login-form.min.js") ? Url("login-form.min.js") : Url("login-form.js");
             }
         

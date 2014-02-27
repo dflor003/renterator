@@ -32,6 +32,14 @@
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="BillTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -85,6 +93,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Bills_BillTypes">
+          <End Role="BillTypes" Type="Self.BillTypes" Multiplicity="1" />
+          <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="BillTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserRoles_Roles">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -117,6 +137,7 @@
           <EntitySet Name="AccountEntries" EntityType="Self.AccountEntries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillTypes" EntityType="Self.BillTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -127,6 +148,10 @@
           <AssociationSet Name="FK_Accounts_ToUsers" Association="Self.FK_Accounts_ToUsers">
             <End Role="Users" EntitySet="Users" />
             <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_BillTypes" Association="Self.FK_Bills_BillTypes">
+            <End Role="BillTypes" EntitySet="BillTypes" />
+            <End Role="Bills" EntitySet="Bills" />
           </AssociationSet>
           <AssociationSet Name="FK_UserRoles_Roles" Association="Self.FK_UserRoles_Roles">
             <End Role="Roles" EntitySet="Roles" />
@@ -158,6 +183,11 @@
           <AssociationSet Name="FK_AccountEntries_ToAccounts" Association="Renterator.Model.FK_AccountEntries_ToAccounts">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="AccountEntry1" EntitySet="AccountEntries" />
+          </AssociationSet>
+          <EntitySet Name="BillTypes" EntityType="Renterator.Model.BillType" />
+          <AssociationSet Name="FK_Bills_BillTypes" Association="Renterator.Model.FK_Bills_BillTypes">
+            <End Role="BillType" EntitySet="BillTypes" />
+            <End Role="Bill" EntitySet="Bills" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="User">
@@ -206,6 +236,8 @@
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="BillTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BillType" Relationship="Renterator.Model.FK_Bills_BillTypes" FromRole="Bill" ToRole="BillType" />
         </EntityType>
         <Association Name="FK_Accounts_ToUsers">
           <End Type="Renterator.Model.User" Role="User" Multiplicity="1" />
@@ -239,6 +271,26 @@
             </Principal>
             <Dependent Role="AccountEntry1">
               <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BillType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bills" Relationship="Renterator.Model.FK_Bills_BillTypes" FromRole="BillType" ToRole="Bill" />
+        </EntityType>
+        <Association Name="FK_Bills_BillTypes">
+          <End Type="Renterator.Model.BillType" Role="BillType" Multiplicity="1" />
+          <End Type="Renterator.Model.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="BillTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -291,6 +343,7 @@
           <EntitySetMapping Name="Bills">
             <EntityTypeMapping TypeName="Renterator.Model.Bill">
               <MappingFragment StoreEntitySet="Bills">
+                <ScalarProperty Name="BillTypeId" ColumnName="BillTypeId" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -305,6 +358,14 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillTypes">
+            <EntityTypeMapping TypeName="Renterator.Model.BillType">
+              <MappingFragment StoreEntitySet="BillTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -340,6 +401,8 @@
         <AssociationConnector Association="Renterator.Model.FK_Accounts_ToUsers" />
         <EntityTypeShape EntityType="Renterator.Model.AccountEntry" Width="1.5" PointX="7.5" PointY="1.375" />
         <AssociationConnector Association="Renterator.Model.FK_AccountEntries_ToAccounts" />
+        <EntityTypeShape EntityType="Renterator.Model.BillType" Width="1.5" PointX="0.75" PointY="8" />
+        <AssociationConnector Association="Renterator.Model.FK_Bills_BillTypes" />
       </Diagram>
     </Diagrams>
   </Designer>

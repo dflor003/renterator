@@ -19,7 +19,10 @@ namespace Renterator.Services.Dto
             this.FirstName = user.FirstName;
             this.LastName = user.LastName;
             this.UserId = user.Id;
+            this.IsAdmin = user.IsAdmin;
         }
+
+        public bool IsAdmin { get; set; }
 
         public string Token { get; private set; }
 

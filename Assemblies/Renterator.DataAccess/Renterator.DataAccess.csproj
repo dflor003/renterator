@@ -71,6 +71,9 @@
     <Compile Include="Model\Bill.cs">
       <DependentUpon>Renterator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\BillType.cs">
+      <DependentUpon>Renterator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\DataAccessorExtended.cs" />
     <Compile Include="Model\Renterator.Context.cs">
       <AutoGen>True</AutoGen>

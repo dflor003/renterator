@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[BillTypes]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(0, 1), 
+    [Name] VARCHAR(200) NOT NULL 
+)

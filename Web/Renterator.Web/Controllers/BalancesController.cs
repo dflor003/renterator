@@ -28,5 +28,11 @@ namespace Renterator.Web.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public virtual ActionResult Bills()
+        {
+            return null;
+        }
     }
 }

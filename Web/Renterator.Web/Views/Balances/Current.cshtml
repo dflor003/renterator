@@ -35,7 +35,7 @@
     <section class="panel panel-primary">
         <header class="panel-heading">
             <h4 class="">
-                <strong>Last 10 Entries</strong>
+                <strong>Entries</strong>
             </h4>
         </header>
         <table class="table table-hover">
@@ -50,7 +50,7 @@
                     <th class="col-xs-2">Running Total</th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: mostRecentEntries">
+            <tbody data-bind="foreach: entries">
                 <tr data-bind="">
                     <td data-bind="text: date.format('MM/DD/YYYY')"></td>
                     <td data-bind="text: description"></td>
@@ -58,6 +58,24 @@
                     <td data-bind="text: $parent.formatCurrency(runningTotal), css: { 'text-success': amount > 0, 'text-danger': amount < 0 }"></td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <ul class="pager">
+                            <li class="previous">
+                                <a href="#" data-bind="">
+                                    <span class="glyphicon glyphicon-arrow-left"></span>
+                                </a>
+                            </li>
+                            <li class="next">
+                                <a href="#" data-bind="">
+                                    <span class="glyphicon glyphicon-arrow-right"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </section>
 </article>

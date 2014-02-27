@@ -30,5 +30,6 @@ namespace Renterator.DataAccess.Model
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<AccountEntry> AccountEntries { get; set; }
+        public DbSet<BillType> BillTypes { get; set; }
     }
 }
